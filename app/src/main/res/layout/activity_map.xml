@@ -3,14 +3,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Map" >
+    android:orientation="vertical"
+    tools:context=".Map">
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="장소, 주소 검색" />
 
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/map"
-        tools:context=".MapsActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        tools:context=".MapsActivity" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:text="여기에 주소, 주차면 수 보여주는 창 띄울 거임" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:text="예약일"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:background="#000000"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="2020-09-25"
+                    android:textStyle="bold"
+                    android:onClick="onClick"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:gravity="left"
+                    android:text="예약 시간"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:background="#000000"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="13:00 P.M."
+                    android:textStyle="bold"
+                    android:onClick="onClick"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="100dp"
+            android:layout_marginTop="10dp"
+            android:background="#FF0000"
+            android:textColor="#FFFFFF"
+            android:text="예약하기"
+            android:clickable="true"
+            android:onClick="reserve"/>
+    </LinearLayout>
 </LinearLayout>

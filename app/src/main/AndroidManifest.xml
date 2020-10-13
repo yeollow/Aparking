@@ -15,15 +15,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
 
-        <activity android:name=".Map"/>
-
-        <activity android:name=".Login"></activity>
-        <activity android:name=".MainActivity">
+        <!-- map 실행되는지 보려고 액티비티 순서 바꿈. 나중에 다시 바꾸기 -->
+        <activity android:name=".Map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity android:name=".Login"></activity>
+        <activity android:name=".MainActivity"></activity>
+
+
+    </application>
 </manifest>
