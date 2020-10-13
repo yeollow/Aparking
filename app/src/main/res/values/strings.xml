@@ -2,6 +2,15 @@
     <string name="app_name">Aparking</string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
+
+    <!-- 오쥬 -->
+    <string name="title">회원가입</string>
+    <string name="title1">이름</string>
+    <string name="title2">이메일</string>
+    <string name="title3">비밀번호</string>
+    <string name="title4">비밀번호 확인</string>
+    <string name="title5">전화번호</string>
+    <string name="title6">인증번호 확인</string>
     <string name="title_activity_check_qr">check_qr</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
