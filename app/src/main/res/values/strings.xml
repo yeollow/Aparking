@@ -19,7 +19,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_mypage">내정보</string>
+    <string name="menu_reservationInfo">예약내역</string>
+    <string name="menu_payInfo">결제내역</string>
+    <string name="menu_consultant">상담하기</string>
 </resources>
