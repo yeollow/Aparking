@@ -23,4 +23,6 @@
     <string name="menu_reservationInfo">예약내역</string>
     <string name="menu_payInfo">결제내역</string>
     <string name="menu_consultant">상담하기</string>
+
+    <string name="qrcheckInfo">주차장 QR코드 인식기에 인식시켜주세요</string>
 </resources>
