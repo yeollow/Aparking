@@ -25,6 +25,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Signin"/>
         <activity android:name=".MyPage">
+
+        </activity>
+        <activity android:name=".Check_qr">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
