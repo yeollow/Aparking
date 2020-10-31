@@ -27,6 +27,8 @@ public class Check_qr extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_qr);
 
+        Intent it = getIntent();
+
         createQRbtn = (Button)findViewById(R.id.nav_btn);
         scanQRbtn = findViewById(R.id.call_btn);
 

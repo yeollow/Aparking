@@ -3,6 +3,7 @@ package com.example.aparking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -157,5 +158,15 @@ public class MapPrice extends AppCompatActivity
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
         //mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(adr1, 17));
+    }
+
+    public void gotoBookmark(View v){
+        Intent it = new Intent(this, Bookmark.class);
+        startActivity(it);
+    }
+
+    public void gotoCheckqr(View v){
+        Intent it = new Intent(this, Check_qr.class);
+        startActivity(it);
     }
 }
