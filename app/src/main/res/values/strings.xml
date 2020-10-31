@@ -4,6 +4,7 @@
     <string name="password">비밀번호</string>
 
     <!-- 오쥬 -->
+    <string name="snstitle">SNS회원가입</string>
     <string name="title">회원가입</string>
     <string name="title1">이름</string>
     <string name="title2">이메일</string>

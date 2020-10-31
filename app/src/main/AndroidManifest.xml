@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.aparking">
 
     <application
@@ -9,31 +10,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SnsSignin">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".Menubar"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <!-- 구글맵, 김도희 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
-        <activity android:name=".Map">
 
-        </activity>
-        <activity android:name=".MapPrice">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Map"></activity>
+        <activity android:name=".MapPrice"></activity>
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Signin"/>
-        <activity android:name=".MyPage"/>
-        <activity android:name=".Check_qr"/>
-        <activity android:name=".Bookmark"/>
+        <activity android:name=".Signin" />
+        <activity android:name=".MyPage" />
+        <activity android:name=".Check_qr" />
+        <activity android:name=".Bookmark" />
     </application>
 
 </manifest>
