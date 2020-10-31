@@ -3,23 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_mypage">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.aparking.ui.home.HomeFragment"
+        android:id="@+id/nav_mypage"
+        android:name="com.example.aparking.ui.mypage.MypageFragment"
         android:label="@string/menu_mypage"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_mypage" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.aparking.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_reservationInfo"
+        android:name="com.example.aparking.ui.reservation.ReservationInfo"
         android:label="@string/menu_reservationInfo"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_mypage" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.aparking.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_payInfo"
+        android:name="com.example.aparking.ui.pay.PayInfoFragment"
         android:label="@string/menu_payInfo"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_payinfo" />
+    <fragment
+        android:id="@+id/nav_consultant"
+        android:name="com.example.aparking.ui.consultant.ConsultantFragment"
+        android:label="@string/menu_consultant"
+        tools:layout="@layout/fragment_consultant" />
 </navigation>
