@@ -18,21 +18,22 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
-        <activity android:name=".Map"/>
-        <activity android:name=".Login" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Signin"/>
-        <activity android:name=".MyPage"/>
-        <activity android:name=".Check_qr">
+        <activity android:name=".Map">
+
+        </activity>
+        <activity android:name=".MapPrice">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Bookmark">
-
-        </activity>
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Signin"/>
+        <activity android:name=".MyPage"/>
+        <activity android:name=".Check_qr"/>
+        <activity android:name=".Bookmark"/>
     </application>
 
 </manifest>
