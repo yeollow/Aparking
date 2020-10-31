@@ -30,7 +30,6 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Signin" />
         <activity android:name=".MyPage" />
-        <activity android:name=".Check_qr" />
         <activity android:name=".Bookmark"/>
         <activity android:name=".ReservationList">
 
