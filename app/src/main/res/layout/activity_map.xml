@@ -95,6 +95,7 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/reserve"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -104,7 +105,6 @@
             android:background="@drawable/round_corner_reserve"
             android:textColor="#FFFFFF"
             android:text="예약하기"
-            android:clickable="true"
-            android:onClick="reserve"/>
+            android:clickable="true" />
     </LinearLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.aparking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,17 +11,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.aparking.ui.Check_qr;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.NumberFormat;
@@ -28,7 +34,7 @@ import java.util.Locale;
 
 
 public class MapPrice extends AppCompatActivity
-        implements OnMapReadyCallback {
+        implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     View marker_root_view;
@@ -44,6 +50,14 @@ public class MapPrice extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+//        tv_marker textView onClickListener등록 후 화면이동.. 
+        tv_marker.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Map.class);
+                startActivity(intent);
+            }
+        });
 
        // btnSelectDate = (Button) findViewById(R.id.btnDate);
        // btnSelectTime = (Button) findViewById(R.id.btnTime);
@@ -51,7 +65,7 @@ public class MapPrice extends AppCompatActivity
 
     private void setCustomMarkerView() {
         marker_root_view = LayoutInflater.from(this).inflate(R.layout.custom_marker, null);
-        tv_marker = (TextView) marker_root_view.findViewById(R.id.tv_marker);
+        tv_marker = marker_root_view.findViewById(R.id.tv_marker);
     }
 
     private Bitmap createDrawableFromView(Context context, View view) {
@@ -83,6 +97,7 @@ public class MapPrice extends AppCompatActivity
 
         tv_marker.setBackgroundResource(R.drawable.marker);
         tv_marker.setTextColor(Color.WHITE);
+
 
         // 1: 복현동진아파트 대구 북구 동북로50길 10 (복현동)
         String formatted1 = NumberFormat.getCurrencyInstance(Locale.KOREA).format(price1);
@@ -158,6 +173,7 @@ public class MapPrice extends AppCompatActivity
         // CameraUpdateFactory.zoomTo가 오동작하네요.
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
         //mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.setOnMarkerClickListener(this);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(adr1, 17));
     }
 
@@ -170,4 +186,55 @@ public class MapPrice extends AppCompatActivity
         Intent it = new Intent(this, Check_qr.class);
         startActivity(it);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_bar, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.nav_mypage:
+                intent = new Intent(getApplicationContext(), MyPage.class);
+                startActivity(intent);
+
+                break;
+
+            case R.id.nav_reservationInfo:
+                intent = new Intent(getApplicationContext(), ReservationList.class);
+                startActivity(intent);
+
+                break;
+/*
+            case R.id.nav_payInfo:
+                intent = new Intent(getApplicationContext(), MyPage.class);
+                startActivity(intent);
+
+                break;
+
+            case R.id.nav_consultant:
+                intent = new Intent(getApplicationContext(), MyPage.class);
+                startActivity(intent);
+
+                break;
+            */
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Intent intent = new Intent(getApplicationContext(), Map.class);
+        startActivity(intent);
+
+        return true ;
+    }
+
 }

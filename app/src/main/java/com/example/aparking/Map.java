@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -18,7 +23,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 
@@ -37,8 +48,19 @@ public class Map extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        btnSelectDate = (Button)findViewById(R.id.btnDate);
-        btnSelectTime= (Button)findViewById(R.id.btnTime);
+        btnSelectDate = (Button) findViewById(R.id.btnDate);
+        btnSelectTime = (Button) findViewById(R.id.btnTime);
+
+        TextView reserve = findViewById(R.id.reserve);
+        reserve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Check_qr.class);
+                intent.putExtra("qrcode", "qrIntent");
+
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,17 +87,15 @@ public class Map extends AppCompatActivity
 
     }
 
-    public void reserve(View v){
-        Toast.makeText(this.getApplicationContext(), "예약하기 클릭", Toast.LENGTH_LONG).show();
-    }
-
     Button btnSelectDate, btnSelectTime;
+
     class DateSetListener implements DatePickerDialog.OnDateSetListener {
         @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){
-            btnSelectDate.setText(dayOfMonth + "/" + (month+1) + "/" + year);
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            btnSelectDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
         }
     }
+
     DateSetListener dateSetListener = new DateSetListener();
 
     class TimeSetListener implements TimePickerDialog.OnTimeSetListener {
@@ -85,6 +105,7 @@ public class Map extends AppCompatActivity
             btnSelectTime.setText(hourOfDay + ":" + minute);
         }
     }
+
     TimeSetListener timeSetListener = new TimeSetListener();
 
 
@@ -96,12 +117,12 @@ public class Map extends AppCompatActivity
         int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
 
-        if(v == btnSelectDate) {
+        if (v == btnSelectDate) {
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    dateSetListener,  mYear, mMonth, mDay);
+                    dateSetListener, mYear, mMonth, mDay);
             datePickerDialog.show();
         }
-        if(v == btnSelectTime) {
+        if (v == btnSelectTime) {
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                     timeSetListener, mHour, mMinute, false);
             timePickerDialog.show();

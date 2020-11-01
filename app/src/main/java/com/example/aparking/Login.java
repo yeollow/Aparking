@@ -1,11 +1,11 @@
 package com.example.aparking;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
 
@@ -24,6 +24,15 @@ public class Login extends AppCompatActivity {
                         Signin.class); // 다음 넘어갈 클래스 지정
                 startActivity(intent); // 다음 화면으로 넘어간다
 
+            }
+        });
+
+        Button login = findViewById(R.id.loginButton);
+        login.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapPrice.class);
+                startActivity(intent);
             }
         });
     }
