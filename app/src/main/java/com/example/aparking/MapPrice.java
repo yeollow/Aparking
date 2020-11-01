@@ -50,7 +50,7 @@ public class MapPrice extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-//        tv_marker textView onClickListener등록 후 화면이동.. 
+//        tv_marker textView onClickListener등록 후 화면이동..
         tv_marker.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
