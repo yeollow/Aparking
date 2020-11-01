@@ -13,13 +13,8 @@
         <activity android:name=".SnsSignin"/>
         <activity
             android:name=".Menubar"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/AppTheme.NoActionBar"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <!-- 구글맵, 김도희 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -28,7 +23,13 @@
         <activity android:name=".MapPrice"></activity>
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Signin" />
+        <activity android:name=".Signin" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MyPage" />
         <activity android:name=".Bookmark"/>
         <activity android:name=".ReservationList">
