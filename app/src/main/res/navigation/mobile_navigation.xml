@@ -6,6 +6,13 @@
     app:startDestination="@+id/nav_mypage">
 
     <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.aparking.ui.home.HomeFragment"
+        android:label="홈"
+        tools:layout="@layout/activity_bookmark"
+        />
+
+    <fragment
         android:id="@+id/nav_mypage"
         android:name="com.example.aparking.ui.mypage.MypageFragment"
         android:label="@string/menu_mypage"
