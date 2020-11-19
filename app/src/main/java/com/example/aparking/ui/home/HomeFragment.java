@@ -2,21 +2,12 @@ package com.example.aparking.ui.home;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -24,14 +15,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.aparking.Check_qr;
-import com.example.aparking.Map;
 import com.example.aparking.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -51,7 +39,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         View root = inflater.inflate(R.layout.activity_map, container, false);
 
         mapFragment = root.findViewById(R.id.map);
-        if(mapFragment != null) {
+        if (mapFragment != null) {
             mapFragment.onCreate(savedInstanceState);
         }
         mapFragment.getMapAsync(this);
@@ -59,7 +47,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         btnSelectDate = (Button) root.findViewById(R.id.btnDate);
         btnSelectTime = (Button) root.findViewById(R.id.btnTime);
 
-        btnSelectDate.setOnClickListener(new View.OnClickListener(){
+        btnSelectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar c = Calendar.getInstance();
@@ -67,9 +55,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 int mMonth = c.get(Calendar.MONTH);
                 int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(inflater.getContext(),
-                            dateSetListener, mYear, mMonth, mDay);
-                    datePickerDialog.show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(inflater.getContext(),
+                        dateSetListener, mYear, mMonth, mDay);
+                datePickerDialog.show();
             }
         });
 
@@ -119,8 +107,36 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         // CameraUpdateFactory.zoomTo가 오동작하네요.
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
         //mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 10));
+        
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(35.895073, 128.616657), 17));
     }
+
+    // 여기부터 Lifecycle 함수들 implement.
+    // 이거 없으니까 fragment로 바꿨을 때 지도 안 뜸
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapFragment.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mapFragment.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        mapFragment.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapFragment.onLowMemory();
+    }
+    // Lifecycle 함수 끝
 
 
     class DateSetListener implements DatePickerDialog.OnDateSetListener {
@@ -138,7 +154,5 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             btnSelectTime.setText(hourOfDay + ":" + minute);
         }
     }
-
-
 }
 

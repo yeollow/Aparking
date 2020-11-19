@@ -13,11 +13,12 @@
         android:iconifiedByDefault="false"
         android:queryHint="장소, 주소 검색" />
 
+    <!-- activity였을 때 태그 fragment였음 -->
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:name="com.google.android.gms.maps.MapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         tools:context=".MapsActivity" />
 
     <LinearLayout

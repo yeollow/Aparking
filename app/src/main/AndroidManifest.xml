@@ -26,8 +26,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
 
-        <activity android:name=".Map"></activity>
-        <activity android:name=".MapPrice" />
+        <activity android:name=".Map">
+
+        </activity>
+        <activity android:name=".MapPrice">
+
+        </activity>
 
         <activity android:name=".Login">
         </activity>
