@@ -37,16 +37,11 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingTop="10dp"
-                android:text="여기에 주소, 주차면 수 보여주는 창 띄울 거임" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:paddingTop="40dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
