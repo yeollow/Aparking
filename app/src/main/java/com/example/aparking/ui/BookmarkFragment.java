@@ -29,13 +29,13 @@ public class BookmarkFragment extends Fragment {
         View root = inflater.inflate(R.layout.activity_bookmark, container, false);
 
         list = (ListView)root.findViewById(R.id.list);
-        //BookmarkAdapter adapter = new BookmarkAdapter(inflater.getContext(),R.layout.listitem_bookmark);
-        //list.setAdapter(adapter);
+        BookmarkAdapter adapter = new BookmarkAdapter(inflater.getContext(),R.layout.listitem_bookmark);
+        list.setAdapter(adapter);
 
         return root;
     }
 }
-/*
+
 class BookmarkAdapter extends BaseAdapter{
     Context context;
     int layout;
@@ -138,5 +138,3 @@ class BookmarkAdapter extends BaseAdapter{
         return view;
     }
 }
-
- */

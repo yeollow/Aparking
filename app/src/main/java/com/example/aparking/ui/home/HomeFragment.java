@@ -31,7 +31,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -39,20 +39,53 @@ import java.util.Calendar;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
+    MapView mapFragment;
     Button btnSelectDate, btnSelectTime;
-    public ViewGroup parent;
+    public LayoutInflater parent;
+    TimeSetListener timeSetListener = new TimeSetListener();
+    DateSetListener dateSetListener = new DateSetListener();
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        parent = container;
+        parent = inflater;
         View root = inflater.inflate(R.layout.activity_map, container, false);
 
-        MapView mapFragment = root.findViewById(R.id.map);
+        mapFragment = root.findViewById(R.id.map);
+        if(mapFragment != null) {
+            mapFragment.onCreate(savedInstanceState);
+        }
         mapFragment.getMapAsync(this);
 
         btnSelectDate = (Button) root.findViewById(R.id.btnDate);
         btnSelectTime = (Button) root.findViewById(R.id.btnTime);
 
+        btnSelectDate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(inflater.getContext(),
+                            dateSetListener, mYear, mMonth, mDay);
+                    datePickerDialog.show();
+            }
+        });
+
+        btnSelectTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(parent.getContext(),
+                        timeSetListener, mHour, mMinute, false);
+                timePickerDialog.show();
+
+            }
+        });
         TextView reserve = root.findViewById(R.id.reserve);
         reserve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +122,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 10));
     }
 
+
     class DateSetListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -96,7 +130,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    DateSetListener dateSetListener = new DateSetListener();
 
     class TimeSetListener implements TimePickerDialog.OnTimeSetListener {
 
@@ -106,26 +139,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    TimeSetListener timeSetListener = new TimeSetListener();
 
-    public void onClick(View v) {
-        Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
-        int mHour = c.get(Calendar.HOUR_OF_DAY);
-        int mMinute = c.get(Calendar.MINUTE);
-
-        if (v == btnSelectDate) {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(parent.getContext(),
-                    dateSetListener, mYear, mMonth, mDay);
-            datePickerDialog.show();
-        }
-        if (v == btnSelectTime) {
-            TimePickerDialog timePickerDialog = new TimePickerDialog(parent.getContext(),
-                    timeSetListener, mHour, mMinute, false);
-            timePickerDialog.show();
-        }
-    }
 }
 
