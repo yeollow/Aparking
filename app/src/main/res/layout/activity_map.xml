@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- FrameLayout 위에 다른 걸 올리면 중첩이 가능해짐 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,21 +18,24 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         tools:context=".MapsActivity" />
 
+    <!-- 지도 아래 내용. 슬라이딩 되는 창 전체 -->
     <LinearLayout
+        android:id="@+id/sliding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_gravity="bottom">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="10dp"
+            android:paddingTop="10dp"
             android:text="여기에 주소, 주차면 수 보여주는 창 띄울 거임" />
 
         <LinearLayout
@@ -50,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="left"
-                    android:padding="10dp"
+                    android:layout_margin="10dp"
                     android:text="예약일"
                     android:textStyle="bold" />
 
@@ -58,10 +62,10 @@
                     android:id="@+id/btnDate"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:paddingHorizontal="10dp"
                     android:background="@drawable/round_corner_datetime"
                     android:textColor="#FFFFFF"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="2020-09-25"
                     android:textStyle="bold"
                     android:onClick="onClick"/>
@@ -76,7 +80,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:padding="10dp"
+                    android:layout_margin="10dp"
                     android:gravity="left"
                     android:text="예약 시간"
                     android:textStyle="bold" />
@@ -85,10 +89,10 @@
                     android:id="@+id/btnTime"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:paddingHorizontal="10dp"
                     android:background="@drawable/round_corner_datetime"
                     android:textColor="#FFFFFF"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="13:00 P.M."
                     android:textStyle="bold"
                     android:onClick="onClick"/>
@@ -101,11 +105,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingVertical="10dp"
-            android:paddingHorizontal="150dp"
+            android:paddingHorizontal="135dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/round_corner_reserve"
             android:textColor="#FFFFFF"
             android:text="예약하기"
             android:clickable="true" />
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>
