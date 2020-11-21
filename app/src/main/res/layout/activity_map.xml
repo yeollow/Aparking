@@ -25,7 +25,7 @@
     <FrameLayout
         android:id="@+id/sliding"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="340dp"
         android:layout_gravity="bottom">
 
         <LinearLayout
@@ -115,12 +115,130 @@
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
+        <!-- 파란 창 -->
         <LinearLayout
             android:layout_width="300dp"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:layout_gravity="top|center_horizontal"
             android:background="@drawable/round_corner_sliding"
             android:gravity="center"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/sliding_apt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="아파트 이름"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/sliding_apt_addr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="아파트 주소"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"/>
+            <!-- 흰 박스 두 개 container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <!-- 흰 박스1: 총 주차면 -->
+                <LinearLayout
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_corner_mypage"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1,500"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="총 주차면"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+                <!-- 흰 박스2: 사용 가능 주차면 -->
+                <LinearLayout
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_corner_mypage"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="594"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사용 가능 주차면"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 아이콘들 container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="115"
+                android:textSize="16dp"
+                android:textColor="#FFFFFF"
+                android:drawableLeft="@drawable/sliding_star_customizing"
+                android:background="#00ff0000"
+                android:paddingHorizontal="15dp"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="23"
+                    android:textSize="16dp"
+                    android:textColor="#FFFFFF"
+                    android:drawableLeft="@drawable/sliding_comment_customizing"
+                    android:background="#00ff0000"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="20dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textColor="#FFFFFF"
+                    android:drawableLeft="@drawable/sliding_compass_customizing"
+                    android:background="#00ff0000"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="5dp"/>
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textColor="#FFFFFF"
+                    android:drawableRight="@drawable/sliding_share_customizing"
+                    android:background="#00ff0000"
+                    android:paddingHorizontal="15dp"/>
+            </LinearLayout>
+        </LinearLayout>
     </FrameLayout>
 </FrameLayout>

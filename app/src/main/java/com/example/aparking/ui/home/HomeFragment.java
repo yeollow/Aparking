@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.aparking.R;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -50,6 +51,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     int mapNewHeight; // 슬라이딩 시 바뀌는 지도 창 height*/
     View marker_root_view;
     TextView tv_marker;
+    TextView apt_name, apt_addr; // 슬라이딩 윈도우에 띄울 아파트 이름, 주소
+    String temp;
 
     TimeSetListener timeSetListener = new TimeSetListener();
     DateSetListener dateSetListener = new DateSetListener();
@@ -120,6 +123,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         sliding = root.findViewById(R.id.sliding);
         sliding.setVisibility(View.INVISIBLE);
         isUp = false;
+
+        apt_name = sliding.findViewById(R.id.sliding_apt_name);
+        apt_addr = sliding.findViewById(R.id.sliding_apt_addr);
 
         return root;
     }
@@ -265,12 +271,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     // 지도의 마커 누르면 슬라이딩 창 뜸뜸
     @Override
     public boolean onMarkerClick(Marker marker) {
+        /* 슬라이딩 윈도우에 set text */
+        temp = marker.getTitle();
+        apt_name.setText(temp);
+        temp = marker.getSnippet();
+        apt_addr.setText(temp);
+
         if (!isUp) {
             slideUp(sliding);
             isUp = !isUp;
         }
 
-        return false; // 이 문장 있어야 기존 스니펫도 보임
+        // return false로 바꾸면 아래 두 문장 필요 X
+        CameraUpdate center = CameraUpdateFactory.newLatLng(marker.getPosition());
+        mMap.animateCamera(center);
+        return true; // return false로 바꾸면 기존 스니펫도 보임
     }
 
     public void slideUp(View view) {
