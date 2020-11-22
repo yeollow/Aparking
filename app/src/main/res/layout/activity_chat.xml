@@ -27,6 +27,7 @@
             android:id ="@+id/et"
             android:layout_width="306dp"
             android:layout_height="wrap_content"
+
             android:inputType="text" />
 
         <Button
