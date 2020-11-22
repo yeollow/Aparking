@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp"
     android:paddingLeft="20dp"
-    android:paddingBottom="20dp"
-    >
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp">
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -33,7 +33,6 @@
                 android:text="@string/snstitle" />
 
 
-
         </LinearLayout>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -41,12 +40,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title1"
-        android:textSize="18sp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="@string/title1"
         android:textColor="#61380B"
- />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -61,12 +59,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title2"
-        android:textSize="18sp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="@string/title2"
         android:textColor="#61380B"
-        />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -81,12 +78,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title3"
-        android:textSize="18sp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="@string/title3"
         android:textColor="#61380B"
-        />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
@@ -96,12 +92,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title4"
-        android:textSize="18sp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="@string/title4"
         android:textColor="#61380B"
-        />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -116,12 +111,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title5"
-        android:textSize="18sp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="@string/title5"
         android:textColor="#61380B"
-        />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -151,20 +145,21 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="199dp"
-            android:layout_height="wrap_content"
-            android:hint="Certification Number" />
+            <EditText
+                android:id="@+id/authEmail"
+                android:layout_width="199dp"
+                android:layout_height="wrap_content"
+                android:hint="EmailAddress" />
 
-             <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="인증번호전송" />
+            <Button
+                android:id="@+id/authButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="인증번호전송" />
 
-         </LinearLayout>
+        </LinearLayout>
 
-     </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
