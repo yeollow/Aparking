@@ -11,17 +11,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Chat">
+<<<<<<< HEAD
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
+=======
+        </activity>
+>>>>>>> a0ff6c4e447c9713b96f009e2a2e1e35b025af22
         <activity android:name=".SnsSignin" />
         <activity
             android:name=".Menubar"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity> <!-- 구글맵, 김도희 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
