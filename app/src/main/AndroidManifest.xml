@@ -11,7 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Chat">
+<<<<<<< HEAD
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+=======
         </activity>
+>>>>>>> a0ff6c4e447c9713b96f009e2a2e1e35b025af22
         <activity android:name=".SnsSignin" />
         <activity
             android:name=".Menubar"
@@ -27,7 +36,8 @@
             android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
         <activity android:name=".Map"></activity>
         <activity android:name=".MapPrice"></activity>
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login"/>
+
         <activity android:name=".MainActivity" />
         <activity android:name=".Signin" />
         <activity android:name=".Check_qr" />
