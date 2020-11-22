@@ -3,7 +3,9 @@ package com.example.aparking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -16,12 +18,13 @@ public class Chat extends AppCompatActivity {
     ArrayAdapter adapter;
     ArrayList<String> datas = new ArrayList<String>();
     EditText et;
+    View row;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         datas.add(new String("If you have any problems using this application, please write a question here. We will check and send you a reply."));
 
         listView=findViewById(R.id.listview);
@@ -32,6 +35,7 @@ public class Chat extends AppCompatActivity {
 
 
     }
+
 
     public void clicksend(View view)
     {
