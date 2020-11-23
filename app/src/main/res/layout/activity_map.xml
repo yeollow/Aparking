@@ -7,13 +7,6 @@
     android:orientation="vertical"
     tools:context=".Map">
 
-    <SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="장소, 주소 검색" />
-
     <!-- activity였을 때 태그 fragment였음 -->
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
@@ -21,6 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MapsActivity" />
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="장소, 주소 검색"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/round_corner_searchview"/>
 
     <!-- 지도 아래 내용. 슬라이딩 되는 창 전체 -->
     <FrameLayout
