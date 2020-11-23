@@ -3,6 +3,7 @@ package com.example.aparking.ui.home;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -24,7 +25,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.aparking.Bookmark;
+import com.example.aparking.MainActivity;
+import com.example.aparking.Menubar;
 import com.example.aparking.R;
+import com.example.aparking.ui.BookmarkFragment;
+import com.example.aparking.ui.Check_qr;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,6 +59,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     TextView tv_marker;
     TextView apt_name, apt_addr; // 슬라이딩 윈도우에 띄울 아파트 이름, 주소
     String temp;
+
+    View btnBookmark, btnQRcode;
 
     TimeSetListener timeSetListener = new TimeSetListener();
     DateSetListener dateSetListener = new DateSetListener();
@@ -126,6 +134,24 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
         apt_name = sliding.findViewById(R.id.sliding_apt_name);
         apt_addr = sliding.findViewById(R.id.sliding_apt_addr);
+
+        // 예약확인, 즐겨찾기 버튼
+        btnBookmark = root.findViewById(R.id.btnBookmark);
+        btnBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new BookmarkFragment();
+                ((Menubar)getActivity()).replaceFragment(R.layout.activity_bookmark,fragment);
+            }
+        });
+        btnQRcode = root.findViewById(R.id.btnQRcode);
+        btnQRcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new Check_qr();
+                ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
+            }
+        });
 
         return root;
     }
@@ -268,6 +294,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     }
     // Lifecycle 함수 끝
 
+
     // 지도의 마커 누르면 슬라이딩 창 뜸뜸
     @Override
     public boolean onMarkerClick(Marker marker) {
@@ -335,6 +362,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             btnSelectTime.setText(hourOfDay + ":" + minute);
         }
+    }
+
+    public void gotoBookmark(View v){
+        Fragment fragment = new HomeFragment();
+        ((Menubar)getActivity()).replaceFragment(R.layout.activity_bookmark,fragment);
+    }
+
+    public void gotoCheckqr(View v){
+        Fragment fragment = new HomeFragment();
+        ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
     }
 }
 
