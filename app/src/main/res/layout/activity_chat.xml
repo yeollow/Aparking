@@ -32,9 +32,10 @@
 
         <Button
         android:layout_width="match_parent"
+        android:id ="@+id/buttonSend"
         android:layout_height="wrap_content"
         android:text="SEND"
-            android:onClick="clicksend"/>
+            />
 
 
     </LinearLayout>
