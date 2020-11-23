@@ -10,21 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".Chat"></activity>
-=======
-        <activity android:name=".Chat">
-<<<<<<< HEAD
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-=======
-        </activity>
->>>>>>> a0ff6c4e447c9713b96f009e2a2e1e35b025af22
->>>>>>> 9f769c43a466fa0e80948374e0ed4dc08152457c
+        <activity android:name=".Chat">    </activity>
+
         <activity android:name=".SnsSignin" />
 
         <activity
@@ -44,11 +32,7 @@
         </activity>
         <activity android:name=".Map"></activity>
         <activity android:name=".MapPrice"></activity>
-<<<<<<< HEAD
-=======
-        <activity android:name=".Login"/>
 
->>>>>>> 9f769c43a466fa0e80948374e0ed4dc08152457c
         <activity android:name=".MainActivity" />
         <activity android:name=".Signin" />
         <activity android:name=".Check_qr" />
