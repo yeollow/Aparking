@@ -11,23 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Chat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
+        <activity android:name=".Chat"></activity>
 
         <activity android:name=".SnsSignin" />
 
         <activity
             android:name=".Menubar"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity> <!-- 구글맵, 김도희 -->
 
         <meta-data
@@ -35,10 +25,11 @@
             android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
 
         <activity android:name=".Login">
-<<<<<<< HEAD
-=======
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
->>>>>>> 250aaf97a42110b94df483068dd090e9045e3755
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Map"></activity>
         <activity android:name=".MapPrice"></activity>
