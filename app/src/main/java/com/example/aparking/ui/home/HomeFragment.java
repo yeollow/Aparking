@@ -1,5 +1,6 @@
 package com.example.aparking.ui.home;
 
+import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -13,6 +14,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -128,7 +131,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         });
 
         // sliding window 처음엔 안 보이게
-        sliding = root.findViewById(R.id.sliding);
+        sliding = (FrameLayout)root.findViewById(R.id.sliding);
         sliding.setVisibility(View.INVISIBLE);
         isUp = false;
 
@@ -136,7 +139,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         apt_addr = sliding.findViewById(R.id.sliding_apt_addr);
 
         // 예약확인, 즐겨찾기 버튼
-        btnBookmark = root.findViewById(R.id.btnBookmark);
+        btnBookmark = (LinearLayout)root.findViewById(R.id.btnBookmark);
         btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,7 +147,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 ((Menubar)getActivity()).replaceFragment(R.layout.activity_bookmark,fragment);
             }
         });
-        btnQRcode = root.findViewById(R.id.btnQRcode);
+        btnQRcode = (LinearLayout)root.findViewById(R.id.btnQRcode);
         btnQRcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -317,6 +320,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
     public void slideUp(View view) {
         view.setVisibility(View.VISIBLE);
+        // 원래꺼
         TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
                 0,                 // toXDelta
@@ -325,10 +329,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         animate.setDuration(500);
         animate.setFillAfter(true);
         view.startAnimation(animate);
-        // mapFragment.setLayoutParams(new FrameLayout.LayoutParams(mapWidth, mapNewHeight));
+
+        // 두 번째 시도
+        /*Animation anim = AnimationUtils.loadAnimation
+                (parent.getContext(), // 현재화면의 제어권자
+                        R.anim.translate_anim2);   // 에니메이션 설정 파일
+        view.startAnimation(anim);*/
+
+        // 세 번째 시도
+        /*ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",view.getHeight(), 0);
+        animator.setDuration(500);
+        animator.start();*/
     }
 
     public void slideDown(View view) {
+        // 원래꺼
         TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
                 0,                 // toXDelta
@@ -337,8 +352,19 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         animate.setDuration(500);
         animate.setFillAfter(true);
         view.startAnimation(animate);
+
+        // 두 번째 시도
+        /*Animation anim = AnimationUtils.loadAnimation
+                (parent.getContext(), // 현재화면의 제어권자
+                        R.anim.translate_anim);   // 에니메이션 설정 파일
+        view.startAnimation(anim);*/
+
+        // 세 번째 시도
+        /*ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",view.getHeight(), -view.getHeight());
+        animator.setDuration(500);
+        animator.start();*/
+
         view.setVisibility(View.GONE);
-        // mapFragment.setLayoutParams(new FrameLayout.LayoutParams(mapWidth, mapHeight));
     }
 
     // 지도의 마커 아닌 곳을 누르면 슬라이딩 창 닫힘
@@ -353,14 +379,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     class DateSetListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            btnSelectDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+            //btnSelectDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+            btnSelectDate.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         }
     }
 
     class TimeSetListener implements TimePickerDialog.OnTimeSetListener {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            btnSelectTime.setText(hourOfDay + ":" + minute);
+            if(hourOfDay < 13)
+                btnSelectTime.setText(hourOfDay + ":" + minute + " A.M.");
+            else
+                btnSelectTime.setText(hourOfDay-12 + ":" + minute + " P.M.");
         }
     }
 
