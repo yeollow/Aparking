@@ -321,14 +321,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     public void slideUp(View view) {
         view.setVisibility(View.VISIBLE);
         // 원래꺼
-        TranslateAnimation animate = new TranslateAnimation(
+        /*TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
                 0,                 // toXDelta
                 view.getHeight(),  // fromYDelta
                 0);                // toYDelta
         animate.setDuration(500);
         animate.setFillAfter(true);
-        view.startAnimation(animate);
+        view.startAnimation(animate);*/
 
         // 두 번째 시도
         /*Animation anim = AnimationUtils.loadAnimation
@@ -337,21 +337,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         view.startAnimation(anim);*/
 
         // 세 번째 시도
-        /*ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",view.getHeight(), 0);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",view.getHeight(), 0);
         animator.setDuration(500);
-        animator.start();*/
+        animator.start();
     }
 
     public void slideDown(View view) {
         // 원래꺼
-        TranslateAnimation animate = new TranslateAnimation(
+        /*TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
                 0,                 // toXDelta
                 0,                 // fromYDelta
                 view.getHeight()); // toYDelta
         animate.setDuration(500);
         animate.setFillAfter(true);
-        view.startAnimation(animate);
+        view.startAnimation(animate);*/
 
         // 두 번째 시도
         /*Animation anim = AnimationUtils.loadAnimation
@@ -360,11 +360,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         view.startAnimation(anim);*/
 
         // 세 번째 시도
-        /*ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",view.getHeight(), -view.getHeight());
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",0, view.getHeight());
         animator.setDuration(500);
-        animator.start();*/
-
-        view.setVisibility(View.GONE);
+        animator.start();
+        //view.setVisibility(View.GONE);
     }
 
     // 지도의 마커 아닌 곳을 누르면 슬라이딩 창 닫힘
