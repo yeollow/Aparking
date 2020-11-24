@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "801971952038",
+    "firebase_url": "https://aparking-d0735.firebaseio.com",
+    "project_id": "aparking-d0735",
+    "storage_bucket": "aparking-d0735.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801971952038:android:aa969e8846e018801d9767",
+        "android_client_info": {
+          "package_name": "com.example.aparking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801971952038-49vfqd48c3g2kjv8jhm69ohvafucqd25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTLwiLyLXBKpABbm1jYEFg61FtJyCAdjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801971952038-49vfqd48c3g2kjv8jhm69ohvafucqd25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
