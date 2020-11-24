@@ -24,8 +24,8 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id ="@+id/et"
-            android:layout_width="306dp"
+            android:id ="@+id/chatText"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
 
             android:inputType="text" />

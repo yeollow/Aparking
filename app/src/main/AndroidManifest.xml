@@ -35,10 +35,6 @@
             android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
 
         <activity android:name=".Login">
-<<<<<<< HEAD
-=======
-
->>>>>>> 250aaf97a42110b94df483068dd090e9045e3755
         </activity>
         <activity android:name=".Map"></activity>
         <activity android:name=".MapPrice"></activity>

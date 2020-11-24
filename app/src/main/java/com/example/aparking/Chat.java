@@ -28,17 +28,14 @@ import java.util.List;
 public class Chat extends AppCompatActivity {
 
     ListView listView;
-    ArrayAdapter adapter;
-    ArrayList<String> datas = new ArrayList<String>();
-    EditText et;
     private EditText chatText;
-    View row;
    ChatArrayAdapter chatArrayAdapter;
     private boolean side = false;
     private Button buttonSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         super.onCreate(savedInstanceState);
         Intent i = getIntent();
@@ -51,7 +48,7 @@ public class Chat extends AppCompatActivity {
         chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(), R.layout.activity_chat_singlemessage);
         listView.setAdapter(chatArrayAdapter);
 
-        chatText = (EditText) findViewById(R.id.et);
+        chatText = (EditText) findViewById(R.id.chatText);
         chatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
@@ -70,7 +67,6 @@ public class Chat extends AppCompatActivity {
         listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         listView.setAdapter(chatArrayAdapter);
 
-        //to scroll the list view to bottom on data change
         chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
@@ -87,19 +83,6 @@ public class Chat extends AppCompatActivity {
         return true;
     }
 
-
-
-
-    public void clicksend(View view)
-    {
-        String str = et.getText().toString();
-
-        datas.add(str);
-
-        adapter.notifyDataSetChanged();
-        listView.setSelection(datas.size()-1);
-        et.setText("");
-    }
 }
 
 class ChatArrayAdapter extends ArrayAdapter {
@@ -109,7 +92,7 @@ class ChatArrayAdapter extends ArrayAdapter {
     private LinearLayout singleMessageContainer;
 
 
-    public void add(@Nullable ChatMessage object) {
+    public void add(ChatMessage object) {
         super.add(object);
         chatMessageList.add(object);
     }
@@ -134,11 +117,11 @@ class ChatArrayAdapter extends ArrayAdapter {
         if (row == null) {
 
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.activity_chat, parent, true);
+            inflater.inflate(R.layout.activity_chat_singlemessage, parent, false);
 
 
         }
-        singleMessageContainer = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
+        //singleMessageContainer = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
         ChatMessage chatMessageObj = getItem(position);
         chatText = (TextView) row.findViewById(R.id.singleMessage);
         chatText.setText(chatMessageObj.message);
