@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/p_image"
         android:layout_toRightOf="@+id/p_image"
-        android:textSize="18dp"
+        android:textSize="15sp"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/reserve_date"
@@ -27,7 +27,7 @@
         android:layout_below="@+id/apt_name2"
         android:layout_marginTop="1dp"
         android:layout_toRightOf="@+id/p_image"
-        android:textSize="17dp" />
+        android:textSize="14sp" />
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
