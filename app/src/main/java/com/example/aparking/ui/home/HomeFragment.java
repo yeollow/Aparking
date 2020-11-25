@@ -47,6 +47,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
     private GoogleMap mMap;
@@ -62,7 +63,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     TextView tv_marker;
     TextView apt_name, apt_addr; // 슬라이딩 윈도우에 띄울 아파트 이름, 주소
     String temp;
-
+    String qrcodeString;
     View btnBookmark, btnQRcode;
 
     TimeSetListener timeSetListener = new TimeSetListener();
@@ -122,11 +123,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         reserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(getApplicationContext(), Check_qr.class);
-                //intent.putExtra("qrcode", "qrIntent");
-
-                //startActivity(intent);
-                Toast.makeText(inflater.getContext(), "clicked", Toast.LENGTH_SHORT).show();
+                qrcodeString = getRandomString();
+                Fragment fragment = new Check_qr();
+                Bundle bundle = new Bundle(1);
+                bundle.putString("qrcode",qrcodeString);
+                fragment.setArguments(bundle);
+                ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
+                Toast.makeText(inflater.getContext(), "예약이 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -152,6 +155,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             @Override
             public void onClick(View view) {
                 Fragment fragment = new Check_qr();
+                Bundle bundle = new Bundle(1);
+                bundle.putString("qrcode",qrcodeString);
+                fragment.setArguments(bundle);
                 ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
             }
         });
@@ -400,7 +406,22 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
     public void gotoCheckqr(View v){
         Fragment fragment = new HomeFragment();
-        ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
+        ((Menubar)getActivity()).replaceFragment(R.layout.activity_map,fragment);
+    }
+
+    private static String getRandomString()
+    {
+        int length = 20;
+        StringBuffer buffer = new StringBuffer();
+        Random random = new Random();
+
+        String chars[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+
+        for (int i=0 ; i<length ; i++)
+        {
+            buffer.append(chars[random.nextInt(chars.length)]);
+        }
+        return buffer.toString();
     }
 }
 
