@@ -15,6 +15,54 @@
       },
       "oauth_client": [
         {
+          "client_id": "801971952038-k5igbma9h4rnu7152883inak92ljms81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aparking",
+            "certificate_hash": "34cfcc99c9c3f8d95c580cb455da04aaa5464e6b"
+          }
+        },
+        {
+          "client_id": "801971952038-r2jqii8niutvd0s9o59lemneabrdae4s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aparking",
+            "certificate_hash": "525e824d3ab9cfada02f92edac77479b8189645f"
+          }
+        },
+        {
+          "client_id": "801971952038-nfrp1ldbr85csuae6cc56nds9rk3spk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aparking",
+            "certificate_hash": "7ba49e56ff0d089362d8626024a5817018606579"
+          }
+        },
+        {
+          "client_id": "801971952038-osnhvt7hkp87dq5d1037upmgjr3v2g1t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aparking",
+            "certificate_hash": "3c6c51d5aa0b947bc3a6af9190ae20a378908cf2"
+          }
+        },
+        {
+          "client_id": "801971952038-gsfrtvpk8mkfst8bvaumi61kgic9schk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aparking",
+            "certificate_hash": "494819e561b920ad6fb457fe697d939ef4ebc49d"
+          }
+        },
+        {
+          "client_id": "801971952038-s6oobnvkbph9g0arnvlq7eoj1p5ddmt5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aparking",
+            "certificate_hash": "e76bf4688397d2502435ff9063ca17d0166eec7d"
+          }
+        },
+        {
           "client_id": "801971952038-49vfqd48c3g2kjv8jhm69ohvafucqd25.apps.googleusercontent.com",
           "client_type": 3
         }

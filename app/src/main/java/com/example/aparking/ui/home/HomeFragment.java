@@ -4,19 +4,14 @@ import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
@@ -28,8 +23,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.aparking.Bookmark;
-import com.example.aparking.MainActivity;
 import com.example.aparking.Menubar;
 import com.example.aparking.R;
 import com.example.aparking.ui.BookmarkFragment;
@@ -43,6 +36,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.NumberFormat;
 import java.util.Calendar;
@@ -52,13 +46,14 @@ import java.util.Random;
 public class HomeFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
     private GoogleMap mMap;
     MapView mapFragment;
+
+    // Access a Cloud Firestore instance from your Activity
+    FirebaseFirestore db;
     Button btnSelectDate, btnSelectTime;
     public LayoutInflater parent;
     View sliding; // 슬라이딩 윈도우
     boolean isUp;
-    /*
-    int mapWidth, mapHeight; // 원래 지도 창 사이즈
-    int mapNewHeight; // 슬라이딩 시 바뀌는 지도 창 height*/
+
     View marker_root_view;
     TextView tv_marker;
     TextView apt_name, apt_addr; // 슬라이딩 윈도우에 띄울 아파트 이름, 주소
@@ -71,6 +66,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        db = FirebaseFirestore.getInstance();
+
         parent = inflater;
         View root = inflater.inflate(R.layout.activity_map, container, false);
 
@@ -82,12 +79,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             mapFragment.onCreate(savedInstanceState);
         }
         mapFragment.getMapAsync(this);
-
-        // 지도 창 사이즈 얻기
-       /* mapWidth = mapFragment.getLayoutParams().width;
-        mapHeight = mapFragment.getLayoutParams().height;
-        mapNewHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 350, getResources().getDisplayMetrics());
-*/
 
         btnSelectDate = (Button) root.findViewById(R.id.btnDate);
         btnSelectTime = (Button) root.findViewById(R.id.btnTime);
@@ -191,10 +182,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         int price3 = 1900;
         int price4 = 2500;
 
-
         tv_marker.setBackgroundResource(R.drawable.marker);
         tv_marker.setTextColor(Color.WHITE);
-
 
         // 1: 복현동진아파트 대구 북구 동북로50길 10 (복현동)
         String formatted1 = NumberFormat.getCurrencyInstance(Locale.KOREA).format(price1);

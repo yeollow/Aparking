@@ -7,6 +7,7 @@ import android.view.Menu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
@@ -21,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class Menubar extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
 
