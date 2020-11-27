@@ -4,6 +4,8 @@
     package="com.example.aparking">
     <!-- 파이어베이스 접근 위한 인터넷 사용 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--Check_qr에서 통화 사용 권한 -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"

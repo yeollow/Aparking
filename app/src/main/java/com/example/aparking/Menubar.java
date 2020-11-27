@@ -90,4 +90,8 @@ public class Menubar extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.nav_host_fragment,fragment).commit();
     }
+
+    public void call(){
+        //통화함수
+    }
 }

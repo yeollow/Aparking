@@ -16,7 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.aparking.Menubar;
 import com.example.aparking.R;
+import com.example.aparking.ui.home.HomeFragment;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
@@ -55,16 +57,17 @@ public class Check_qr extends Fragment {
                 iv.setImageBitmap(bitmap);
             } catch (Exception e) {
             }
+        }else{
+            iv.setImageBitmap(null);
+            cancel.setVisibility(View.INVISIBLE);
         }
 
         scanQRbtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //popstack 부르기?
+               //통화버튼
             }
         });
 
-        //왜 안되지?
-        /*
         cancel.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(root.getContext());
@@ -75,6 +78,11 @@ public class Check_qr extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         text = null;
                         Toast.makeText(root.getContext(),"예약이 취소되었습니다.",Toast.LENGTH_LONG).show();
+                        Fragment fragment = new Check_qr();
+                        Bundle bundle = new Bundle(1);
+                        bundle.putString("qrcode",text);
+                        fragment.setArguments(bundle);
+                        ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
                     }
                 });
                 alertDialogBuilder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -83,9 +91,9 @@ public class Check_qr extends Fragment {
 
                     }
                 });
+                alertDialogBuilder.show();
             }
         });
-         */
 
         return root;
     }

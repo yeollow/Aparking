@@ -61,6 +61,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     String qrcodeString;
     View btnBookmark, btnQRcode;
 
+    public static HomeFragment newinstance(){ return new HomeFragment();}
+
     TimeSetListener timeSetListener = new TimeSetListener();
     DateSetListener dateSetListener = new DateSetListener();
 
@@ -110,6 +112,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
             }
         });
+
+        //qrcheck 화면에서 확인눌렀을때, 동작하는 코드
+        /*
+        if(savedInstanceState != null) {
+            String key = getArguments().getString("qrcode");
+            if(key == "1")
+                qrcodeString = null;
+            else
+                qrcodeString = key;
+        }
+         */
         TextView reserve = root.findViewById(R.id.reserve);
         reserve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +168,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
         return root;
     }
-
 
     private Bitmap createDrawableFromView(Context context, View view) {
 
@@ -412,5 +424,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         }
         return buffer.toString();
     }
+
 }
 
