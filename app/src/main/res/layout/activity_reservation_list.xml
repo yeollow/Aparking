@@ -6,13 +6,14 @@
     android:background="@color/colorBackground"
     tools:context=".ReservationList">
 
+    <!-- size 수정 시 즐겨찾기, 예약내역, 결제내역 다 같이 바꾸기 -->
     <TextView
         android:id="@+id/text_reservationList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="예약내역"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"/>
     <ListView
@@ -22,6 +23,6 @@
         android:layout_below="@id/text_reservationList"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="10dp"/>
 
 </RelativeLayout>

@@ -6,6 +6,8 @@
     android:background="@drawable/round_corner_mypage"
     android:padding="10dp"
     android:layout_margin="10dp">
+
+    <!-- size 수정 시 즐겨찾기, 예약내역, 결제내역 다 같이 바꾸기 -->
     <ImageView
         android:id="@+id/p_image"
         android:layout_width="60dp"
@@ -18,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/p_image"
         android:layout_toRightOf="@+id/p_image"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/reserve_date"
@@ -27,14 +29,14 @@
         android:layout_below="@+id/apt_name2"
         android:layout_marginTop="1dp"
         android:layout_toRightOf="@+id/p_image"
-        android:textSize="14sp" />
+        android:textSize="15sp" />
     <TextView
         android:id="@+id/isReserved"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textColor="#888888"
-        android:textSize="15dp" />
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp" />
 
 </RelativeLayout>

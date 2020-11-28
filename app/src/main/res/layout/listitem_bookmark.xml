@@ -6,12 +6,14 @@
     android:background="@drawable/round_corner_mypage"
     android:padding="8dp"
     android:layout_margin="10dp">
+
+    <!-- size 수정 시 즐겨찾기, 예약내역, 결제내역 다 같이 바꾸기 -->
     <TextView
         android:id="@+id/apt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"/>
@@ -20,14 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/apt_name"
-        android:textSize="14sp"
+        android:textSize="15sp"
         android:layout_marginLeft="5dp"/>
     <TextView
         android:id="@+id/apt_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/apt_address"
-        android:textSize="14sp"
+        android:textSize="15sp"
         android:layout_marginLeft="5dp"/>
 
     <Button
@@ -36,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:backgroundTint="#D093DA"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"/>
 
@@ -47,7 +49,7 @@
         android:layout_below="@id/apt_price"
         android:layout_alignParentRight="true"
         android:backgroundTint="#AB46BC"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"/>
 
