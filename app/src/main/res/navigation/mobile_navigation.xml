@@ -8,30 +8,30 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.aparking.ui.home.HomeFragment"
-        android:label="홈"
+        android:label="@string/app_name"
         tools:layout="@layout/activity_bookmark"
         />
 
     <fragment
         android:id="@+id/nav_mypage"
         android:name="com.example.aparking.ui.mypage.MypageFragment"
-        android:label="@string/menu_mypage"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_mypage" />
 
     <fragment
         android:id="@+id/nav_reservationInfo"
         android:name="com.example.aparking.ui.reservation.ReservationInfo"
-        android:label="@string/menu_reservationInfo"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_mypage" />
 
     <fragment
         android:id="@+id/nav_payInfo"
         android:name="com.example.aparking.ui.pay.PayInfoFragment"
-        android:label="@string/menu_payInfo"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_payinfo" />
     <fragment
         android:id="@+id/nav_consultant"
         android:name="com.example.aparking.ui.consultant.ConsultantFragment"
-        android:label="@string/menu_consultant"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_consultant" />
 </navigation>
