@@ -157,14 +157,13 @@
 
             <TextView
                 android:id="@+id/reserve"
-                android:layout_width="wrap_content"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/round_corner_reserve"
                 android:clickable="true"
                 android:gravity="center"
-                android:paddingHorizontal="135dp"
                 android:paddingVertical="10dp"
                 android:text="예약하기"
                 android:textSize="16sp"
