@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryLight"
         android:textSize="15sp" />
 
 </RelativeLayout>

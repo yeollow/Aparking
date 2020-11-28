@@ -106,9 +106,9 @@ class ReservationAdapter extends BaseAdapter {
 
         // text에 따라 색 변경
         if (state[position].equals("예약취소됨"))
-            isReserved.setTextColor(ColorStateList.valueOf(Color.parseColor("#ef5253")));
+            isReserved.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.colorRed)));
         if (state[position].equals("예약완료"))
-            isReserved.setTextColor(ColorStateList.valueOf(Color.parseColor("#3ea12f")));
+            isReserved.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.colorGreen)));
 
         return view;
     }
