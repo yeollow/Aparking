@@ -15,6 +15,11 @@
             android:title="@string/menu_mypage" />
 
         <item
+            android:id="@+id/nav_bookmark"
+            android:icon="@drawable/ic_menu_bookmark"
+            android:title="@string/menu_bookmark" />
+
+        <item
             android:id="@+id/nav_reservationInfo"
             android:icon="@drawable/ic_menu_article"
             android:title="@string/menu_reservationInfo" />
