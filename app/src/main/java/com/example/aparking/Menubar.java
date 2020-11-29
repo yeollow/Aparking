@@ -1,5 +1,7 @@
 package com.example.aparking;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -91,7 +93,8 @@ public class Menubar extends AppCompatActivity {
         fragmentTransaction.replace(R.id.nav_host_fragment,fragment).commit();
     }
 
-    public void call(){
-        //통화함수
+    public void call(String url){
+        Intent in = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
+        startActivity(in);
     }
 }
