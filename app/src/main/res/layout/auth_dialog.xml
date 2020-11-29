@@ -49,14 +49,14 @@
         />
 
     <Button
-        android:id="@+id/emailAuth_btn"
+        android:id="@+id/signUp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="#FFFFFF"
-        android:text="OK"
-        android:textSize="22sp"
         android:layout_marginBottom="30dp"
-        android:layout_gravity="center"/>
+        android:background="#FFFFFF"
+        android:text="회원가입"
+        android:textSize="22sp" />
 
 </LinearLayout>
