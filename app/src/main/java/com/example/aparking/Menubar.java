@@ -9,8 +9,14 @@ import android.view.Menu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -23,9 +29,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Menubar extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
+    private DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();
+    DatabaseReference secondary = mDatabase.child("parking_lot");
+    Map<String, Object> childupdate = new HashMap<>();
+    Map<String, Object> postValues = null;
+
     DrawerLayout drawer;
+    Parking_lot test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +73,17 @@ public class Menubar extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        test = new Parking_lot("복현동진아파트","대구 북구 동북로50길 10 (복현동)",
+                35.895073,128.616657,1500, 20, 13);
+        postValues = test.toMap();
+
+        childupdate.put("/parking_lot/"+1,postValues);
+        mDatabase.updateChildren(childupdate);
     }
 
     @Override
