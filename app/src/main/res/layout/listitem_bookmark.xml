@@ -35,7 +35,7 @@
     <Button
         android:id="@+id/apt_price"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignParentRight="true"
         android:backgroundTint="#D093DA"
         android:textSize="16sp"
@@ -45,7 +45,7 @@
     <Button
         android:id="@+id/apt_avail"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_below="@id/apt_price"
         android:layout_alignParentRight="true"
         android:backgroundTint="#AB46BC"
