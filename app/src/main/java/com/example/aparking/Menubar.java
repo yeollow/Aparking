@@ -34,13 +34,13 @@ import java.util.Map;
 
 public class Menubar extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
-    private DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();
-    DatabaseReference secondary = mDatabase.child("parking_lot");
-    Map<String, Object> childupdate = new HashMap<>();
-    Map<String, Object> postValues = null;
+    //private DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();
+    //DatabaseReference secondary = mDatabase.child("parking_lot");
+    // Map<String, Object> childupdate = new HashMap<>();
+    // Map<String, Object> postValues = null;
 
     DrawerLayout drawer;
-    Parking_lot test;
+    //Parking_lot test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,17 +73,6 @@ public class Menubar extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        test = new Parking_lot("복현동진아파트","대구 북구 동북로50길 10 (복현동)",
-                35.895073,128.616657,1500, 20, 13);
-        postValues = test.toMap();
-
-        childupdate.put("/parking_lot/"+1,postValues);
-        mDatabase.updateChildren(childupdate);
     }
 
     @Override
@@ -123,4 +112,53 @@ public class Menubar extends AppCompatActivity {
         Intent in = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
         startActivity(in);
     }
+
+    //주차장 데이터 베이스 초기화
+    /*
+    @Override
+    protected void onStart() {
+        super.onStart();
+        test = new Parking_lot("복현동진아파트","대구 북구 동북로50길 10 (복현동)",
+                "010-1234-5678",35.895073,128.616657,1500, 20, 13);
+        postValues = test.toMap();
+
+        childupdate.put("/parking_lot/"+"lot1",postValues);
+        mDatabase.updateChildren(childupdate);
+
+        test = new Parking_lot("뉴그랜드아파트","대구 북구 경진로남1길 17-5 (복현동)",
+                "010-0000-0000",35.895456,128.615767,1000, 15, 5);
+        postValues = test.toMap();
+
+        childupdate.put("/parking_lot/"+"lot2",postValues);
+        mDatabase.updateChildren(childupdate);
+
+        test = new Parking_lot("동양아파트","대구 북구 경진로남1길 20 (복현동)",
+                "010-0000-0000",35.894874,128.615608,1000, 21, 12);
+        postValues = test.toMap();
+
+        childupdate.put("/parking_lot/"+"lot3",postValues);
+        mDatabase.updateChildren(childupdate);
+
+        test = new Parking_lot("석우로즈빌아파트","대구 북구 경진로12길 6-14 (복현동)",
+                "010-0000-0000",35.893167,128.616869,1200, 10, 1);
+        postValues = test.toMap();
+
+        childupdate.put("/parking_lot/"+"lot4",postValues);
+        mDatabase.updateChildren(childupdate);
+
+        test = new Parking_lot("복현아이파크아파트","대구 북구 경대로27길 40 (복현동)",
+                "010-0000-0000",35.894312,128.617684,1000, 22, 16);
+        postValues = test.toMap();
+
+        childupdate.put("/parking_lot/"+"lot5",postValues);
+        mDatabase.updateChildren(childupdate);
+
+        test = new Parking_lot("리치파크아파트","대구 북구 경진로51 (복현동)",
+                "010-0000-0000",35.893198,128.617419,1000, 10, 10);
+        postValues = test.toMap();
+
+        childupdate.put("/parking_lot/"+"lot6",postValues);
+        mDatabase.updateChildren(childupdate);
+    }
+ */
 }
