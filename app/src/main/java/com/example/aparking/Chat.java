@@ -51,7 +51,7 @@ public class Chat extends AppCompatActivity {
 
 
         chatText = (EditText) findViewById(R.id.chatText);
-        chatText.setOnKeyListener(new View.OnKeyListener() {
+        /*chatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
@@ -59,13 +59,13 @@ public class Chat extends AppCompatActivity {
                 }
                 return false;
             }
-        });
-        buttonSend.setOnClickListener(new View.OnClickListener() {
+        });*/
+        /*buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 sendChatMessage();
             }
-        });
+        });*/
 
         listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
@@ -124,9 +124,9 @@ public class Chat extends AppCompatActivity {
             singleMessageContainer = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
             ChatMessage chatMessageObj = getItem(position);
 
-            chatText = (TextView) row.findViewById(R.id.singleMessage);
-            chatText.setText(chatMessageObj.message);
-            chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_a : R.drawable.bubble_b);
+            //chatText = (TextView) row.findViewById(R.id.singleMessage);
+            //chatText.setText(chatMessageObj.message);
+            //chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_a : R.drawable.bubble_b);
             singleMessageContainer.setGravity(chatMessageObj.left ? Gravity.LEFT : Gravity.RIGHT);
 
             return row;
