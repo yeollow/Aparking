@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,36 +8,36 @@
     tools:context=".Chat">
 
 
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#ffffff"/>
 
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:divider="#ffffff"></ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:orientation="horizontal"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:orientation="horizontal">
 
         <EditText
-            android:id ="@+id/chatText"
+            android:id="@+id/chatText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
 
             android:inputType="text" />
 
         <Button
-        android:layout_width="match_parent"
-        android:id ="@+id/buttonSend"
-        android:layout_height="wrap_content"
-        android:text="SEND"
-            />
+            android:id="@+id/buttonSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEND" />
 
 
     </LinearLayout>
 
 
-</FrameLayout>
+</LinearLayout>
