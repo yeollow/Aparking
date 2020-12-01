@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_corner_mypage"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+    <!-- 이름, 날짜, 별점 container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:id="@+id/reviewUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customer_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/reviewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20.07.11"
+            android:textSize="17sp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30dp"/>
+        <!-- 별점을 오른쪽으로 붙여주기 위한 빈 view -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:isIndicator="true"
+            android:rating="5"/>
+    </LinearLayout>
+    <!-- 선 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGray"
+        android:layout_marginHorizontal="5dp"/>
+    <!-- 댓글 내용 -->
+    <TextView
+        android:id="@+id/reviewText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="주차장 간격이 넓어서 좋아요~"
+        android:textSize="16sp"/>
+</LinearLayout>

@@ -39,4 +39,9 @@
         android:name="com.example.aparking.ui.consultant.ConsultantFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_consultant" />
+    <fragment
+        android:id="@+id/nav_review"
+        android:name="com.example.aparking.ui.ReviewFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_review" />
 </navigation>
