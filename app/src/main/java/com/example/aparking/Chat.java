@@ -1,4 +1,5 @@
 package com.example.aparking;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +30,7 @@ public class Chat extends AppCompatActivity {
 
     ListView listView;
     private EditText chatText;
-   ChatArrayAdapter chatArrayAdapter;
+    ChatArrayAdapter chatArrayAdapter;
     private boolean side = false;
     private Button buttonSend;
 
@@ -48,24 +49,25 @@ public class Chat extends AppCompatActivity {
         chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(), R.layout.activity_chat_singlemessage);
         listView.setAdapter(chatArrayAdapter);
 
+
         chatText = (EditText) findViewById(R.id.chatText);
-        chatText.setOnKeyListener(new View.OnKeyListener() {
+        /*chatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+
                     return sendChatMessage();
                 }
                 return false;
             }
-        });
-        buttonSend.setOnClickListener(new View.OnClickListener() {
+        });*/
+        /*buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 sendChatMessage();
             }
-        });
+        });*/
 
         listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-        listView.setAdapter(chatArrayAdapter);
 
         chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
@@ -74,9 +76,10 @@ public class Chat extends AppCompatActivity {
                 listView.setSelection(chatArrayAdapter.getCount() - 1);
             }
         });
+
     }
 
-    private boolean sendChatMessage(){
+    private boolean sendChatMessage() {
         chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
         chatText.setText("");
         side = !side;
@@ -113,18 +116,19 @@ public class Chat extends AppCompatActivity {
 
             View row = convertView;
 
-
-
+            if(row == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 row = inflater.inflate(R.layout.activity_chat_singlemessage, null, true);
-
+            }
 
             singleMessageContainer = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
             ChatMessage chatMessageObj = getItem(position);
-            chatText = (TextView) row.findViewById(R.id.singleMessage);
-            chatText.setText(chatMessageObj.message);
-            chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_a : R.drawable.bubble_b);
+
+            //chatText = (TextView) row.findViewById(R.id.singleMessage);
+            //chatText.setText(chatMessageObj.message);
+            //chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_a : R.drawable.bubble_b);
             singleMessageContainer.setGravity(chatMessageObj.left ? Gravity.LEFT : Gravity.RIGHT);
+
             return row;
 
 

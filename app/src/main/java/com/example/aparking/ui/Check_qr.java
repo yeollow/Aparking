@@ -26,8 +26,8 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class Check_qr extends Fragment {
     private Button createQRbtn;
-    private Button scanQRbtn;
-    private TextView info, cancel;
+    private Button callbtn;
+    private TextView info, cancel, telenum;
     private String text = null;
     public static Check_qr newinstance(){
         return new Check_qr();
@@ -38,9 +38,10 @@ public class Check_qr extends Fragment {
         final View root = inflater.inflate(R.layout.activity_check_qr, container, false);
 
         createQRbtn = (Button)root.findViewById(R.id.nav_btn);
-        scanQRbtn = root.findViewById(R.id.call_btn);
+        callbtn = root.findViewById(R.id.call_btn);
         info = root.findViewById(R.id.qrcheckInfotext);
         cancel = root.findViewById(R.id.qrcheck_cancel);
+        telenum = root.findViewById(R.id.textView6);
 
         info.setText("예약된 주차장이 없습니다.");
 
@@ -60,11 +61,14 @@ public class Check_qr extends Fragment {
         }else{
             iv.setImageBitmap(null);
             cancel.setVisibility(View.INVISIBLE);
+            callbtn.setVisibility(View.INVISIBLE);
+            telenum.setVisibility(View.INVISIBLE);
         }
 
-        scanQRbtn.setOnClickListener(new View.OnClickListener(){
+        callbtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-               //통화버튼
+               String tel = "tel:010-1234-5678";
+                ((Menubar)getActivity()).call(tel);
             }
         });
 

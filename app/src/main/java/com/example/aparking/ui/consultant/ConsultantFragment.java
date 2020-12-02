@@ -54,6 +54,8 @@ public class ConsultantFragment extends Fragment {
         chatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    sendChatMessage();
+                    chatText.setText("메시지가 전달되었습니다.\n상담원이 확인 후 답변드리겠습니다.");
                     return sendChatMessage();
                 }
                 return false;
@@ -62,6 +64,8 @@ public class ConsultantFragment extends Fragment {
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                sendChatMessage();
+                chatText.setText("메시지가 전달되었습니다.\n상담원이 확인 후 답변드리겠습니다.");
                 sendChatMessage();
             }
         });
@@ -126,6 +130,7 @@ public class ConsultantFragment extends Fragment {
             chatText.setText(chatMessageObj.message);
             chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_a : R.drawable.bubble_b);
             singleMessageContainer.setGravity(chatMessageObj.left ? Gravity.LEFT : Gravity.RIGHT);
+
             return row;
 
         }

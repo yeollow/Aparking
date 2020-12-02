@@ -17,7 +17,7 @@
             android:gravity="center"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
-            android:text="홍길동"
+            android:text="@string/customer_name"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="20dp"
-                android:text="010-XXXX-XXXX"
+                android:text="@string/customer_telnumber"
                 android:textSize="15sp" />
 
             <View
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="20dp"
-                android:text="gildong@knu.ac.kr"
+                android:text="@string/customer_email"
                 android:textSize="15sp" />
 
             <View
