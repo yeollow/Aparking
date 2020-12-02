@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +29,7 @@ public class Login extends AppCompatActivity {
         });
 
         Button login = findViewById(R.id.loginButton);
+
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -37,6 +37,8 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
+
 
 }
