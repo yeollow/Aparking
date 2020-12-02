@@ -21,6 +21,7 @@
             android:text="복현동진아파트"
             android:layout_marginTop="10dp"/>
 
+
        <!--<ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -44,6 +45,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"/>
             <RatingBar
+                android:id="@+id/reviewRatingAvg"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,6 +61,7 @@
                 android:background="@drawable/ic_menu_article"
                 android:alpha=".4"/>
             <TextView
+                android:id="@+id/reviewCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -85,18 +88,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"
         android:background="#ffffff"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/reviewChat"
-            android:layout_width="300dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:inputType="text" />
-
+        <RatingBar
+            android:id="@+id/reviewRatingInput"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"
+            android:isIndicator="false"/>
         <Button
             android:id="@+id/reviewBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="후기 작성" />
     </LinearLayout>
