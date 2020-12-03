@@ -108,6 +108,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener, D
                 acc_email = authEmail.getEditText().getText().toString();
                 acc_pw_confirm = confirmPw.getEditText().getText().toString();
 
+//                이거 왜 안되누
                 authEmailText = authEmail.getEditText();
                 authEmailText.addTextChangedListener(new TextWatcher() {
                     @Override
