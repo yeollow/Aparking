@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- FrameLayout 위에 다른 걸 올리면 중첩이 가능해짐 -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FrameLayout 위에 다른 걸 올리면 중첩이 가능해짐 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -187,7 +188,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/sliding_apt_name"
+                android:id="@+id/slidingAptName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -198,7 +199,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sliding_apt_addr"
+                android:id="@+id/slidingAptAddr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -220,6 +221,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/slidingTotalParking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -245,6 +247,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/slidingAvailParking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"

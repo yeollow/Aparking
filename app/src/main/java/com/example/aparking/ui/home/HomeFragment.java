@@ -5,13 +5,11 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -28,9 +26,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
-import com.example.aparking.Map;
 import com.example.aparking.Menubar;
 import com.example.aparking.R;
 import com.example.aparking.ui.BookmarkFragment;
@@ -47,29 +43,33 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Formatter;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
+    LayoutInflater parent;
     private GoogleMap mMap;
     MapView mapFragment;
 
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db;
-    Button btnSelectDate, btnSelectTime;
-    public LayoutInflater parent;
-    View sliding; // 슬라이딩 윈도우
-    boolean isUp;
 
-    View marker_root_view;
-    TextView tv_marker;
-    TextView apt_name, apt_addr; // 슬라이딩 윈도우에 띄울 아파트 이름, 주소
-    Button bookmarkBtn, reviewBtn, naviBtn, shareBtn; // 슬라이딩 창에 아이콘들
-    String temp;
+    View marker_root_view; // 커스텀 마커
+    TextView tv_marker; // 커스텀 마커 위에 띄우는 가격
+    View sliding; // 슬라이딩 윈도우
+    boolean isUp; // 슬라이드 업/다운 판단
+    List<Apartment> aptList = new ArrayList<Apartment>(); // 아파트 객체 리스트 (주차장 관련 모든 정보 여기 있음)
+    TextView aptName, aptAddr, totalSpace, availSpace; // 슬라이딩 윈도우에 띄울 텍스트들
+    Button bookmarkBtn, reviewBtn, naviBtn, shareBtn; // 슬라이딩 창 아이콘들
+    Button btnSelectDate, btnSelectTime; // 예약일, 예약시간 버튼
+    View btnBookmark, btnQRcode; // floating buttons (즐겨찾기, 예약확인)
     String qrcodeString;
-    View btnBookmark, btnQRcode;
 
     Intent intent;
     private final String packageName = "com.nhn.android.nmap";
@@ -84,22 +84,24 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         db = FirebaseFirestore.getInstance();
-
         parent = inflater;
         View root = inflater.inflate(R.layout.activity_map, container, false);
 
+        aptInitialize(); // 아파트 객체들 생성
+
+        // 마커
         marker_root_view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_marker, null);
         tv_marker = marker_root_view.findViewById(R.id.tv_marker);
 
+        // 지도
         mapFragment = root.findViewById(R.id.map);
         if (mapFragment != null) {
             mapFragment.onCreate(savedInstanceState);
         }
         mapFragment.getMapAsync(this);
 
+        // 날짜 선택 버튼 클릭
         btnSelectDate = (Button) root.findViewById(R.id.btnDate);
-        btnSelectTime = (Button) root.findViewById(R.id.btnTime);
-
         btnSelectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +116,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             }
         });
 
+        // 시간 선택 버튼 클릭
+        btnSelectTime = (Button) root.findViewById(R.id.btnTime);
         btnSelectTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +142,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 qrcodeString = key;
         }
          */
+
         TextView reserve = root.findViewById(R.id.reserve);
         reserve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,8 +162,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         sliding.setVisibility(View.INVISIBLE);
         isUp = false;
 
-        apt_name = sliding.findViewById(R.id.sliding_apt_name);
-        apt_addr = sliding.findViewById(R.id.sliding_apt_addr);
+        // sliding 창의 Textviews
+        aptName = sliding.findViewById(R.id.slidingAptName);
+        aptAddr = sliding.findViewById(R.id.slidingAptAddr);
+        totalSpace = sliding.findViewById(R.id.slidingTotalParking);
+        availSpace = sliding.findViewById(R.id.slidingAvailParking);
 
         // 즐겨찾기 floating 버튼 클릭
         btnBookmark = (LinearLayout) root.findViewById(R.id.btnBookmark);
@@ -169,6 +177,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 ((Menubar) getActivity()).replaceFragment(R.layout.activity_bookmark, fragment);
             }
         });
+
         // 예약확인 floating 버튼 클릭
         btnQRcode = (LinearLayout) root.findViewById(R.id.btnQRcode);
         btnQRcode.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +204,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 updateBookmark();
             }
         });
+
         // 리뷰 아이콘 클릭
         reviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +213,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 ((Menubar) getActivity()).replaceFragment(R.layout.fragment_review, fragment);
             }
         });
+
         // 네비게이션 아이콘 클릭
         naviBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,6 +224,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 startActivity(intent);
             }
         });
+
         // 공유 아이콘 클릭
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,92 +289,25 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        int price1 = 3000;
-        int price2 = 2000;
-        int price3 = 1900;
-        int price4 = 2500;
-
         tv_marker.setBackgroundResource(R.drawable.marker);
         tv_marker.setTextColor(Color.WHITE);
 
-        // 1: 복현동진아파트 대구 북구 동북로50길 10 (복현동)
-        String formatted1 = NumberFormat.getCurrencyInstance(Locale.KOREA).format(price1);
-        tv_marker.setText(formatted1);
-
-        LatLng adr1 = new LatLng(35.895073, 128.616657);
-        MarkerOptions markerOptions1 = new MarkerOptions();
-        markerOptions1.position(adr1);
-        markerOptions1.title("복현동진아파트");
-        markerOptions1.snippet("대구 북구 동북로50길 10 (복현동)");
-        markerOptions1.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(parent.getContext(), marker_root_view)));
-        mMap.addMarker(markerOptions1);
-
-        // 2: 뉴그랜드아파트 대구 북구 경진로남1길 17-5 (복현동)
-        String formatted2 = NumberFormat.getCurrencyInstance(Locale.KOREA).format(price2);
-        tv_marker.setText(formatted2);
-
-        LatLng adr2 = new LatLng(35.895456, 128.615767);
-        MarkerOptions markerOptions2 = new MarkerOptions();
-        markerOptions2.position(adr2);
-        markerOptions2.title("뉴그랜드아파트");
-        markerOptions2.snippet("대구 북구 경진로남1길 17-5 (복현동)");
-        markerOptions2.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(parent.getContext(), marker_root_view)));
-        mMap.addMarker(markerOptions2);
-
-        // 3: 동양아파트 대구 북구 경진로남1길 20 (복현동)
-        String formatted3 = NumberFormat.getCurrencyInstance(Locale.KOREA).format(price3);
-        tv_marker.setText(formatted3);
-
-        LatLng adr3 = new LatLng(35.894874, 128.615608);
-        MarkerOptions markerOptions3 = new MarkerOptions();
-        markerOptions3.position(adr3);
-        markerOptions3.title("동양아파트");
-        markerOptions3.snippet("대구 북구 경진로남1길 20 (복현동)");
-        markerOptions3.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(parent.getContext(), marker_root_view)));
-        mMap.addMarker(markerOptions3);
-
-        // 4: 석우로즈빌아파트 대구 북구 경진로12길 6-14 (복현동)
-        String formatted4 = NumberFormat.getCurrencyInstance(Locale.KOREA).format(price4);
-        tv_marker.setText(formatted4);
-
-        LatLng adr4 = new LatLng(35.893167, 128.616869);
-        MarkerOptions markerOptions4 = new MarkerOptions();
-        markerOptions4.position(adr4);
-        markerOptions4.title("석우로즈빌아파트");
-        markerOptions4.snippet("대구 북구 경진로12길 6-14 (복현동)");
-        markerOptions4.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(parent.getContext(), marker_root_view)));
-        mMap.addMarker(markerOptions4);
-
-        // 5: 복현아이파크아파트 대구 북구 경대로27길 40 (복현동)
-        tv_marker.setText(formatted1);
-
-        LatLng adr5 = new LatLng(35.894312, 128.617684);
-        MarkerOptions markerOptions5 = new MarkerOptions();
-        markerOptions5.position(adr5);
-        markerOptions5.title("복현아이파크아파트");
-        markerOptions5.snippet("대구 북구 경대로27길 40 (복현동)");
-        markerOptions5.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(parent.getContext(), marker_root_view)));
-        mMap.addMarker(markerOptions5);
-
-        // 6: 리치파크아파트 대구 북구 경진로51 (복현동)
-        tv_marker.setText(formatted2);
-
-        LatLng adr6 = new LatLng(35.893198, 128.617419);
-        MarkerOptions markerOptions6 = new MarkerOptions();
-        markerOptions6.position(adr6);
-        markerOptions6.title("리치파크아파트");
-        markerOptions6.snippet("대구 북구 경진로51 (복현동)");
-        markerOptions6.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(parent.getContext(), marker_root_view)));
-        mMap.addMarker(markerOptions6);
-
-        // 기존에 사용하던 다음 2줄은 문제가 있습니다.
-        // CameraUpdateFactory.zoomTo가 오동작하네요.
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        //mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        for (int i = 0; i < 6; i++) {
+            String price = NumberFormat.getCurrencyInstance(Locale.KOREA).format(aptList.get(i).getAptPrice());
+            tv_marker.setText(price);
+            LatLng aptAddr = new LatLng(aptList.get(i).getLatitude(), aptList.get(i).getLongitude());
+            MarkerOptions marker = new MarkerOptions();
+            marker.position(aptAddr);
+            marker.title(aptList.get(i).getAptName());
+            marker.snippet(aptList.get(i).getAptAddr());
+            marker.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(parent.getContext(), marker_root_view)));
+            mMap.addMarker(marker);
+        }
 
         mMap.setOnMarkerClickListener(this); // 마커 클릭 시 슬라이딩 윈도우 뜸
         mMap.setOnMapClickListener(this);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(adr1, 17));
+        LatLng aptAddr = new LatLng(aptList.get(0).getLatitude(), aptList.get(0).getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aptAddr, 17));
     }
 
     // 여기부터 Lifecycle 함수들 implement.
@@ -396,14 +341,28 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     // 지도의 마커 누르면 슬라이딩 창 뜸뜸
     @Override
     public boolean onMarkerClick(Marker marker) {
-        // 슬라이딩 윈도우에 set text
-        temp = marker.getTitle();
-        apt_name.setText(temp);
+        // 아파트 이름, 주소 setText
+        String temp;
         temp = marker.getSnippet();
-        apt_addr.setText(temp);
+        aptAddr.setText(temp);
+        temp = marker.getTitle();
+        aptName.setText(temp);
+
+        // 어느 아파트 객체인지 리스트에서 찾기
+        int index;
+        for (index = 0; index < 6; index++) {
+            if (temp.equals(aptList.get(index).getAptName()))
+                break;
+        }
+        // 총 주차면, 사용 가능 주차면, 즐겨찾기 수, 리뷰 수 setText
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        totalSpace.setText(formatter.format(aptList.get(index).getTotalSpace()));
+        availSpace.setText(formatter.format(aptList.get(index).getAvailSpace()));
+        bookmarkBtn.setText(Integer.toString(aptList.get(index).getBookmarkCnt()));
+        reviewBtn.setText(Integer.toString(aptList.get(index).getReviewCnt()));
 
         // 즐겨찾기 아이콘 하얗게 초기화
-        if(bookmarkBtn.getCurrentTextColor() == getResources().getColor(R.color.colorYellow))
+        if (bookmarkBtn.getCurrentTextColor() == getResources().getColor(R.color.colorYellow))
             updateBookmark();
 
         if (!isUp) {
@@ -456,6 +415,88 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         }
     }
 
+    // 아파트 클래스
+    public class Apartment {
+        private String aptName;
+        private String aptAddr;
+        private int aptPrice;
+        private int totalSpace;
+        private int availSpace;
+        private int bookmarkCnt;
+        private int reviewCnt;
+        double latitude;
+        double longitude;
+
+        public Apartment(String aptName, String aptAddr, int aptPrice, int totalSpace, int availSpace, int bookmarkCnt, int reviewCnt, double latitude, double longitude) {
+            this.aptName = aptName;
+            this.aptAddr = aptAddr;
+            this.aptPrice = aptPrice;
+            this.totalSpace = totalSpace;
+            this.availSpace = availSpace;
+            this.bookmarkCnt = bookmarkCnt;
+            this.reviewCnt = reviewCnt;
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+
+        public String getAptName() {
+            return aptName;
+        }
+
+        public String getAptAddr() {
+            return aptAddr;
+        }
+
+        public int getAptPrice() {
+            return aptPrice;
+        }
+
+        public int getTotalSpace() {
+            return totalSpace;
+        }
+
+        public int getAvailSpace() {
+            return availSpace;
+        }
+
+        public int getBookmarkCnt() {
+            return bookmarkCnt;
+        }
+
+        public int getReviewCnt() {
+            return reviewCnt;
+        }
+
+        public double getLatitude() {
+            return latitude;
+        }
+
+        public double getLongitude() {
+            return longitude;
+        }
+    }
+
+    // 아파트 객체들 생성
+    public void aptInitialize() {
+        this.add(new Apartment("복현동진아파트", "대구 북구 동북로50길 10 (복현동)", 2800,
+                1900, 159, 236, 4, 35.895073, 128.616657));
+        this.add(new Apartment("뉴그랜드아파트", "대구 북구 경진로남1길 17-5 (복현동)", 1300,
+                1800, 517, 106, 4, 35.895456, 128.615767));
+        this.add(new Apartment("동양아파트", "대구 북구 경진로남1길 20 (복현동)", 1900,
+                3500, 1084, 371, 4, 35.894874, 128.615608));
+        this.add(new Apartment("석우로즈빌아파트", "대구 북구 경진로12길 6-14 (복현동)", 2500,
+                2400, 423, 105, 4, 35.893167, 128.616869));
+        this.add(new Apartment("복현아이파크아파트", "대구 북구 경대로27길 40 (복현동)", 1400,
+                1500, 211, 113, 4, 35.894312, 128.617684));
+        this.add(new Apartment("리치파크아파트", "대구 북구 경진로51 (복현동)", 1600,
+                2300, 256, 295, 4, 35.893198, 128.617419));
+    }
+
+    // 아파트 객체 리스트에 추가
+    public void add(Apartment apt) {
+        aptList.add(apt);
+    }
+
     private static String getRandomString() {
         int length = 20;
         StringBuffer buffer = new StringBuffer();
@@ -468,6 +509,5 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         }
         return buffer.toString();
     }
-
 }
 
