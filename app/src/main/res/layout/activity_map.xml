@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><!-- FrameLayout 위에 다른 걸 올리면 중첩이 가능해짐 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Map">
 
@@ -19,55 +19,61 @@
         android:id="@+id/search_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="장소, 주소 검색"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:background="@drawable/round_corner_searchview"
+        android:iconifiedByDefault="false"
         android:paddingBottom="5dp"
-        android:background="@drawable/round_corner_searchview"/>
+        android:queryHint="장소, 주소 검색" />
 
     <!-- 예약확인, 즐겨찾기 버튼 -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="bottom|right"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:id="@+id/btnBookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginRight="15dp"
-            android:clickable="true">
+            android:clickable="true"
+            android:orientation="vertical">
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/star48"/>
+                app:srcCompat="@drawable/star48" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_gravity="center"
                 android:text="즐겨찾기"
-                android:layout_gravity="center" />
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/btnQRcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginRight="15dp"
-            android:clickable="true">
+            android:clickable="true"
+            android:orientation="vertical">
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/qrcode48"/>
+                app:srcCompat="@drawable/qrcode48" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_gravity="center"
                 android:text="예약확인"
-                android:layout_gravity="center"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
@@ -90,8 +96,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:paddingTop="40dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="40dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -118,8 +124,8 @@
                         android:onClick="onClick"
                         android:paddingHorizontal="10dp"
                         android:text="2020-09-25"
-                        android:textSize="15sp"
                         android:textColor="#FFFFFF"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -148,8 +154,8 @@
                         android:onClick="onClick"
                         android:paddingHorizontal="10dp"
                         android:text="13:00 P.M."
-                        android:textSize="15sp"
                         android:textColor="#FFFFFF"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -166,9 +172,9 @@
                 android:gravity="center"
                 android:paddingVertical="10dp"
                 android:text="예약하기"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- 파란 창 -->
@@ -179,25 +185,27 @@
             android:background="@drawable/round_corner_sliding"
             android:gravity="center"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/sliding_apt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:text="아파트 이름"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
                 android:textSize="20sp"
-                android:gravity="center"
-                android:layout_marginTop="10dp"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/sliding_apt_addr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:text="아파트 주소"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="16sp" />
             <!-- 흰 박스 두 개 container -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -210,90 +218,101 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_corner_mypage"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
                         android:text="1,500"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="8dp"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="총 주차면"
-                        android:textSize="15sp"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginBottom="5dp"/>
+                        android:layout_marginBottom="5dp"
+                        android:text="총 주차면"
+                        android:textSize="15sp" />
                 </LinearLayout>
                 <!-- 흰 박스2: 사용 가능 주차면 -->
                 <LinearLayout
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/round_corner_mypage"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
                         android:text="594"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="8dp"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="사용 가능 주차면"
-                        android:textSize="15sp"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginBottom="5dp"/>
+                        android:layout_marginBottom="5dp"
+                        android:text="사용 가능 주차면"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
             <!-- 아이콘들 container -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="115"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:drawableLeft="@drawable/sliding_star_customizing"
-                android:background="#00ff0000"
-                android:paddingHorizontal="15dp"/>
-                <Button
-                    android:layout_width="wrap_content"
+                    android:id="@+id/slidingBookmartBtn"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="23"
-                    android:textSize="16sp"
+                    android:background="#00ff0000"
+                    android:drawableLeft="@drawable/sliding_star_customizing"
+                    android:paddingHorizontal="10dp"
+                    android:text="115"
                     android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/slidingReviewBtn"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00ff0000"
                     android:drawableLeft="@drawable/sliding_comment_customizing"
-                    android:background="#00ff0000"
                     android:paddingLeft="15dp"
-                    android:paddingRight="20dp"/>
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="16sp"
+                    android:paddingRight="10dp"
+                    android:text="23"
                     android:textColor="#FFFFFF"
-                    android:drawableLeft="@drawable/sliding_compass_customizing"
-                    android:background="#00ff0000"
-                    android:paddingRight="15dp"
-                    android:paddingLeft="5dp"/>
+                    android:textSize="16sp" />
+
                 <Button
+                    android:id="@+id/slidingNaviBtn"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:drawableRight="@drawable/sliding_share_customizing"
                     android:background="#00ff0000"
-                    android:paddingHorizontal="15dp"/>
+                    android:drawableLeft="@drawable/sliding_compass_customizing"
+                    android:paddingHorizontal="15dp"
+                    android:text=""
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/slidingShareBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00ff0000"
+                    android:drawableRight="@drawable/sliding_share_customizing"
+                    android:paddingHorizontal="15dp"
+                    android:text=""
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

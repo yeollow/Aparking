@@ -7,6 +7,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -21,12 +24,14 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.aparking.Menubar;
 import com.example.aparking.R;
 import com.example.aparking.ui.BookmarkFragment;
 import com.example.aparking.ui.Check_qr;
+import com.example.aparking.ui.ReviewFragment;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -57,11 +62,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     View marker_root_view;
     TextView tv_marker;
     TextView apt_name, apt_addr; // 슬라이딩 윈도우에 띄울 아파트 이름, 주소
+    Button bookmarkBtn, reviewBtn, naviBtn, shareBtn; // 슬라이딩 창에 아이콘들
     String temp;
     String qrcodeString;
     View btnBookmark, btnQRcode;
 
-    public static HomeFragment newinstance(){ return new HomeFragment();}
+    public static HomeFragment newinstance() {
+        return new HomeFragment();
+    }
 
     TimeSetListener timeSetListener = new TimeSetListener();
     DateSetListener dateSetListener = new DateSetListener();
@@ -130,43 +138,107 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 qrcodeString = getRandomString();
                 Fragment fragment = new Check_qr();
                 Bundle bundle = new Bundle(1);
-                bundle.putString("qrcode",qrcodeString);
+                bundle.putString("qrcode", qrcodeString);
                 fragment.setArguments(bundle);
-                ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
+                ((Menubar) getActivity()).replaceFragment(R.layout.activity_check_qr, fragment);
                 Toast.makeText(inflater.getContext(), "예약이 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
         // sliding window 처음엔 안 보이게
-        sliding = (FrameLayout)root.findViewById(R.id.sliding);
+        sliding = (FrameLayout) root.findViewById(R.id.sliding);
         sliding.setVisibility(View.INVISIBLE);
         isUp = false;
 
         apt_name = sliding.findViewById(R.id.sliding_apt_name);
         apt_addr = sliding.findViewById(R.id.sliding_apt_addr);
 
-        // 예약확인, 즐겨찾기 버튼
-        btnBookmark = (LinearLayout)root.findViewById(R.id.btnBookmark);
+        // 즐겨찾기 floating 버튼 클릭
+        btnBookmark = (LinearLayout) root.findViewById(R.id.btnBookmark);
         btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new BookmarkFragment();
-                ((Menubar)getActivity()).replaceFragment(R.layout.activity_bookmark,fragment);
+                ((Menubar) getActivity()).replaceFragment(R.layout.activity_bookmark, fragment);
             }
         });
-        btnQRcode = (LinearLayout)root.findViewById(R.id.btnQRcode);
+        // 예약확인 floating 버튼 클릭
+        btnQRcode = (LinearLayout) root.findViewById(R.id.btnQRcode);
         btnQRcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new Check_qr();
                 Bundle bundle = new Bundle(1);
-                bundle.putString("qrcode",qrcodeString);
+                bundle.putString("qrcode", qrcodeString);
                 fragment.setArguments(bundle);
-                ((Menubar)getActivity()).replaceFragment(R.layout.activity_check_qr,fragment);
+                ((Menubar) getActivity()).replaceFragment(R.layout.activity_check_qr, fragment);
+            }
+        });
+
+        // 슬라이딩 창 아이콘
+        bookmarkBtn = (Button) root.findViewById(R.id.slidingBookmartBtn);
+        reviewBtn = (Button) root.findViewById(R.id.slidingReviewBtn);
+        naviBtn = (Button) root.findViewById(R.id.slidingNaviBtn);
+        shareBtn = (Button) root.findViewById(R.id.slidingShareBtn);
+
+        // 즐겨찾기 아이콘 클릭
+        bookmarkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateBookmark();
+            }
+        });
+        // 리뷰 아이콘 클릭
+        reviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new ReviewFragment();
+                ((Menubar) getActivity()).replaceFragment(R.layout.fragment_review, fragment);
+            }
+        });
+        // 네비게이션 아이콘 클릭
+        naviBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(parent.getContext(), "준비 중인 서비스입니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        // 공유 아이콘 클릭
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(parent.getContext(), "준비 중인 서비스입니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
         return root;
+    }
+
+    // 즐겨찾기 클릭 시 불리는 함수
+    public void updateBookmark() {
+        final Drawable drawable = (Drawable) ContextCompat.getDrawable(parent.getContext(), R.drawable.sliding_star_customizing);
+        String text = bookmarkBtn.getText().toString();
+        int num = Integer.parseInt(text);
+
+        if (bookmarkBtn.getCurrentTextColor() == Color.WHITE) {
+            // 별 노랗게
+            drawable.setColorFilter(getResources().getColor(R.color.colorYellow), PorterDuff.Mode.MULTIPLY);
+            bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+            // 숫자에 1 더하기
+            num += 1;
+            bookmarkBtn.setText(Integer.toString(num));
+            // 숫자 노랗게
+            bookmarkBtn.setTextColor(getResources().getColor(R.color.colorYellow));
+        } else {
+            // 별 하얗게
+            drawable.setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+            bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+            // 숫자에 1 빼기
+            num -= 1;
+            bookmarkBtn.setText(Integer.toString(num));
+            // 숫자 하얗게
+            bookmarkBtn.setTextColor(Color.WHITE);
+        }
     }
 
     private Bitmap createDrawableFromView(Context context, View view) {
@@ -308,11 +380,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     // 지도의 마커 누르면 슬라이딩 창 뜸뜸
     @Override
     public boolean onMarkerClick(Marker marker) {
-        /* 슬라이딩 윈도우에 set text */
+        // 슬라이딩 윈도우에 set text
         temp = marker.getTitle();
         apt_name.setText(temp);
         temp = marker.getSnippet();
         apt_addr.setText(temp);
+
+        // 즐겨찾기 아이콘 하얗게 초기화
+        if(bookmarkBtn.getCurrentTextColor() == getResources().getColor(R.color.colorYellow))
+            updateBookmark();
 
         if (!isUp) {
             slideUp(sliding);
@@ -327,50 +403,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
     public void slideUp(View view) {
         view.setVisibility(View.VISIBLE);
-        // 원래꺼
-        /*TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                view.getHeight(),  // fromYDelta
-                0);                // toYDelta
-        animate.setDuration(500);
-        animate.setFillAfter(true);
-        view.startAnimation(animate);*/
-
-        // 두 번째 시도
-        /*Animation anim = AnimationUtils.loadAnimation
-                (parent.getContext(), // 현재화면의 제어권자
-                        R.anim.translate_anim2);   // 에니메이션 설정 파일
-        view.startAnimation(anim);*/
-
-        // 세 번째 시도
-        ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",view.getHeight(), 0);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", view.getHeight(), 0);
         animator.setDuration(500);
         animator.start();
     }
 
     public void slideDown(View view) {
-        // 원래꺼
-        /*TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                0,                 // fromYDelta
-                view.getHeight()); // toYDelta
-        animate.setDuration(500);
-        animate.setFillAfter(true);
-        view.startAnimation(animate);*/
-
-        // 두 번째 시도
-        /*Animation anim = AnimationUtils.loadAnimation
-                (parent.getContext(), // 현재화면의 제어권자
-                        R.anim.translate_anim);   // 에니메이션 설정 파일
-        view.startAnimation(anim);*/
-
-        // 세 번째 시도
-        ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationY",0, view.getHeight());
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", 0, view.getHeight());
         animator.setDuration(500);
         animator.start();
-        //view.setVisibility(View.GONE);
     }
 
     // 지도의 마커 아닌 곳을 누르면 슬라이딩 창 닫힘
@@ -382,44 +423,31 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         }
     }
 
-    class DateSetListener implements DatePickerDialog.OnDateSetListener {
+    public class DateSetListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            //btnSelectDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
             btnSelectDate.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         }
     }
 
-    class TimeSetListener implements TimePickerDialog.OnTimeSetListener {
+    public class TimeSetListener implements TimePickerDialog.OnTimeSetListener {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            if(hourOfDay < 13)
+            if (hourOfDay < 13)
                 btnSelectTime.setText(hourOfDay + ":" + minute + " A.M.");
             else
-                btnSelectTime.setText(hourOfDay-12 + ":" + minute + " P.M.");
+                btnSelectTime.setText(hourOfDay - 12 + ":" + minute + " P.M.");
         }
     }
 
-    public void gotoBookmark(View v){
-        Fragment fragment = new HomeFragment();
-        ((Menubar)getActivity()).replaceFragment(R.layout.activity_bookmark,fragment);
-    }
-
-    public void gotoCheckqr(View v){
-        Fragment fragment = new HomeFragment();
-        ((Menubar)getActivity()).replaceFragment(R.layout.activity_map,fragment);
-    }
-
-    private static String getRandomString()
-    {
+    private static String getRandomString() {
         int length = 20;
         StringBuffer buffer = new StringBuffer();
         Random random = new Random();
 
-        String chars[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+        String chars[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
-        for (int i=0 ; i<length ; i++)
-        {
+        for (int i = 0; i < length; i++) {
             buffer.append(chars[random.nextInt(chars.length)]);
         }
         return buffer.toString();
