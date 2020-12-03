@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -26,7 +28,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
+import com.example.aparking.Map;
 import com.example.aparking.Menubar;
 import com.example.aparking.R;
 import com.example.aparking.ui.BookmarkFragment;
@@ -66,6 +70,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     String temp;
     String qrcodeString;
     View btnBookmark, btnQRcode;
+
+    Intent intent;
+    private final String packageName = "com.nhn.android.nmap";
 
     public static HomeFragment newinstance() {
         return new HomeFragment();
@@ -200,14 +207,23 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         naviBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(parent.getContext(), "준비 중인 서비스입니다.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(parent.getContext(), "준비 중인 서비스입니다.", Toast.LENGTH_SHORT).show();
+//                fragement를 얻어  activity(Map??)에 접근 -> activity에서 네이버 지도 앱 실행
+                intent = getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+                startActivity(intent);
             }
         });
         // 공유 아이콘 클릭
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(parent.getContext(), "준비 중인 서비스입니다.", Toast.LENGTH_SHORT).show();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
             }
         });
 
