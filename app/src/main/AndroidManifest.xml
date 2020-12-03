@@ -22,7 +22,8 @@
 
         <activity
             android:name=".Menubar"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"> <!-- 키보드가 올라왔을 때 layout의 상하단 모두 보이도록 조절 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

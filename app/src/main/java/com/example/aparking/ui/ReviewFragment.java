@@ -61,7 +61,7 @@ public class ReviewFragment extends Fragment {
         setRatingAvg();
         setReviewCnt();
 
-        // 새 data 입력 시 키보드 위로 바로 뜨도록 (아이템을 리스트 맨 뒤에 추가할 때 적용)
+        // 아이템을 리스트 맨 뒤에 추가할 때 적용
         //list.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
         // 입력창에서 엔터키 누르면 등록
