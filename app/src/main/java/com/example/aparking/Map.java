@@ -28,6 +28,7 @@ public class Map extends AppCompatActivity
     private GoogleMap mMap;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,20 @@ public class Map extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+//        Button naviBtn = findViewById(R.id.slidingNaviBtn);
+        /*
+        naviBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = getPackageManager().getLeanbackLaunchIntentForPackage(packageName);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        */
     }
+
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
