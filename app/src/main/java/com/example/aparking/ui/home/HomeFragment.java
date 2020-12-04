@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     Intent intent;
     private final String packageName = "com.nhn.android.nmap";
 
-    public static HomeFragment newinstance() {
+    public static HomeFragment getInstance() {
         return new HomeFragment();
     }
 

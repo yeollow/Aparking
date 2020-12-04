@@ -15,7 +15,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.aparking.MainActivity;
 import com.example.aparking.Menubar;
 import com.example.aparking.R;
 import com.example.aparking.ui.home.HomeFragment;
@@ -25,11 +28,16 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class Check_qr extends Fragment {
-    private Button createQRbtn;
+    private Button navigationBtn;
     private Button callbtn;
+    private Button closeBtn;
     private TextView info, cancel, telenum;
     private String text = null;
-    public static Check_qr newinstance(){
+
+    private final String packageName = "com.nhn.android.nmap";
+    Intent intent;
+
+    public static Check_qr getInstance() {
         return new Check_qr();
     }
 
@@ -37,7 +45,8 @@ public class Check_qr extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.activity_check_qr, container, false);
 
-        createQRbtn = (Button)root.findViewById(R.id.nav_btn);
+        navigationBtn = root.findViewById(R.id.nav_btn);
+        closeBtn = root.findViewById(R.id.close_btn);
         callbtn = root.findViewById(R.id.call_btn);
         info = root.findViewById(R.id.qrcheckInfotext);
         cancel = root.findViewById(R.id.qrcheck_cancel);
@@ -64,6 +73,25 @@ public class Check_qr extends Fragment {
             callbtn.setVisibility(View.INVISIBLE);
             telenum.setVisibility(View.INVISIBLE);
         }
+
+
+        View view = inflater.inflate(R.layout.activity_map_price, null);
+        closeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new HomeFragment();
+                ((Menubar) getActivity()).replaceFragment(R.layout.activity_map_price, fragment);
+
+            }
+        });
+
+        navigationBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                intent = getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+                startActivity(intent);
+            }
+        });
 
         callbtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -101,5 +129,4 @@ public class Check_qr extends Fragment {
 
         return root;
     }
-
 }
