@@ -162,8 +162,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 bundle.putString("qrcode",qrcodeString);
                 fragment.setArguments(bundle);
                 ((Menubar) getActivity()).replaceFragment(R.layout.activity_check_qr, fragment);
-                Toast.makeText(inflater.getContext(), name, Toast.LENGTH_SHORT).show();
-                Toast.makeText(inflater.getContext(), "예약이 되었습니다.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(inflater.getContext(), name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(inflater.getContext(), name + " 주차장을 예약했습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
