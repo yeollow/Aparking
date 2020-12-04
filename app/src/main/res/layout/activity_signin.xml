@@ -3,48 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingTop="20dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="20dp">
+    android:padding="30dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="210dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/title"
-                android:textColor="#61380B"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorDarkBrownGray"/>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/button2"
-                android:layout_width="163dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/snstitle" />
+                android:paddingHorizontal="30dp"
+                android:layout_gravity="right"
+                android:text="@string/snstitle"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="@color/colorGray"/>
 
 
         </LinearLayout>
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title1"
-        android:textColor="#61380B"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkBrownGray"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
@@ -54,7 +57,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username" />
+            android:hint="Username"
+            android:textSize="16sp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -62,9 +66,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title2"
-        android:textColor="#61380B"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkBrownGray"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
@@ -74,7 +78,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Email"
+            android:textSize="16sp"
+            android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -82,9 +88,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title3"
-        android:textColor="#61380B"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkBrownGray"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwd"
@@ -95,7 +101,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textSize="16sp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,9 +111,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title4"
-        android:textColor="#61380B"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkBrownGray"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cofirm_pw"
@@ -118,7 +125,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="16sp"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -128,9 +136,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title5"
-        android:textColor="#61380B"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkBrownGray"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phone"
@@ -140,7 +148,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PhoneNumber" />
+            android:hint="Phone Number"
+            android:textSize="16sp"
+            android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -150,11 +160,14 @@
 
         <Button
             android:id="@+id/authButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginTop="20dp"
-            android:text="인증번호전송" />
+            android:backgroundTint="@color/colorPrimaryDark2"
+            android:text="인증번호전송"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

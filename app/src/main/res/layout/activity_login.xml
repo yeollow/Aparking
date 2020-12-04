@@ -11,7 +11,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:layout_marginTop="50dp"
             android:src="@drawable/aparking" />
 
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="15dp"
+            android:padding="30dp"
             android:layout_marginTop="10dp">
 
             <EditText
@@ -46,13 +46,19 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:text="로그인"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold"
+                android:backgroundTint="@color/colorPrimaryDark2"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="30dp"/>
 
             <Button
                 android:id="@+id/gotoPasswordResetButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark2"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="회원가입" />
         </LinearLayout>
 
