@@ -62,7 +62,7 @@ public class ReviewFragment extends Fragment {
         setReviewCnt();
 
         // 아이템을 리스트 맨 뒤에 추가할 때 적용
-        //list.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        //bookmarkList.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
         // 입력창에서 엔터키 누르면 등록
         chatText = (EditText) root.findViewById(R.id.reviewChat);
@@ -103,7 +103,7 @@ public class ReviewFragment extends Fragment {
             public void onChanged() {
                 super.onChanged();
                 list.setSelection(adapter.getCount() - 1);
-                //list.smoothScrollToPosition(adapter.getCount() -1);
+                //bookmarkList.smoothScrollToPosition(adapter.getCount() -1);
             }
         });
 

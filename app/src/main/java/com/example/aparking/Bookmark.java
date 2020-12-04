@@ -74,7 +74,7 @@ public class Bookmark extends AppCompatActivity {
         Intent it = getIntent();
 
         CustomList adapter = new CustomList(Bookmark.this);
-        list = (ListView)findViewById(R.id.list);
+        list = (ListView)findViewById(R.id.bookmarkList);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

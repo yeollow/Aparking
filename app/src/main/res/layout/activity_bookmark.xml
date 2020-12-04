@@ -17,7 +17,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"/>
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/bookmarkList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/text_bookmark"
@@ -25,6 +25,9 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="10dp"
         android:divider="@color/colorBackground"
-        android:dividerHeight="1dp"/>
+        android:dividerHeight="1dp"
+        android:descendantFocusability="blocksDescendants"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
 </RelativeLayout>
