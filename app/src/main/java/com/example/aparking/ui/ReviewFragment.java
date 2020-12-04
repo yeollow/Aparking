@@ -59,9 +59,10 @@ public class ReviewFragment extends Fragment {
         list = (ListView)root.findViewById(R.id.reviewList);
         list.setAdapter(adapter);
         setRatingAvg();
+        setReviewCnt();
 
-        // 새 data 입력 시 키보드 위로 바로 뜨도록 (아이템을 리스트 맨 뒤에 추가할 때 적용)
-        //list.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        // 아이템을 리스트 맨 뒤에 추가할 때 적용
+        //bookmarkList.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
         // 입력창에서 엔터키 누르면 등록
         chatText = (EditText) root.findViewById(R.id.reviewChat);
@@ -102,7 +103,7 @@ public class ReviewFragment extends Fragment {
             public void onChanged() {
                 super.onChanged();
                 list.setSelection(adapter.getCount() - 1);
-                //list.smoothScrollToPosition(adapter.getCount() -1);
+                //bookmarkList.smoothScrollToPosition(adapter.getCount() -1);
             }
         });
 
@@ -157,6 +158,13 @@ public class ReviewFragment extends Fragment {
 
         // 초기 data 입력
         public void initialize() {
+            add(new Item("김남준", "머라 써야되노", "19.12.31", 1));
+            add(new Item("정호석", "쌤들이 시험칠 때 연예인 이름 왜 넣는지 알 거 같다", "20.05.11", (float)2.5));
+            add(new Item("민윤기", "딴 데보다 싼 거 같음 굿굿", "20.06.25", 5));
+            add(new Item("김태형", "그냥 동네 아파트 주차장이에요.", "20.06.30", 3));
+            add(new Item("김석진", "무난합니다~", "20.07.08", 4));
+            add(new Item("전정국", "가격 싸고 괜찮네영", "20.07.16", (float) 4.5));
+            add(new Item("박지민", "입차할 때 큐알코드 에러났는데 관리자가 계속 통화중이어서 10분 넘게 기다렸네요ㅋㅋ 후기 왜 좋은지 모르겠네", "20.08.01", 1));
             add(new Item("김도희", "주차장이 넓어서 좋아요!!", "20.08.05", 5));
             add(new Item("백혜원", "문제가 생겨서 관리자분께 연락해서 해결했습니다. 친절하고 좋았어요~~", "20.09.17", (float) 4.5));
             add(new Item("이정열", "깔끔하고 괜찮음. 근데 다른 곳보다 좀 비싼 것 같다;; 그래도 여기만 한 데가 없어서 거의 여기만 씀. 복현동 출장갈 때 강추", "20.11.23", 4));
