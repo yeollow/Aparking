@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.aparking.Menubar;
+import com.example.aparking.Parking_lot;
 import com.example.aparking.R;
 import com.example.aparking.ui.BookmarkFragment;
 import com.example.aparking.ui.Check_qr;
@@ -41,6 +42,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
@@ -59,6 +65,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference qrcode_storage = mDatabase.child("user_qr"); //유저에 대한 큐알코드 스트링 저장소
 
     View marker_root_view; // 커스텀 마커
     TextView tv_marker; // 커스텀 마커 위에 띄우는 가격
@@ -69,9 +77,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     Button bookmarkBtn, reviewBtn, naviBtn, shareBtn; // 슬라이딩 창 아이콘들
     Button btnSelectDate, btnSelectTime; // 예약일, 예약시간 버튼
     View btnBookmark, btnQRcode; // floating buttons (즐겨찾기, 예약확인)
-    String qrcodeString;
+    String qrcodeString; //qrcode대한 랜덤 스트링
+    int reser_index; //예약하기 누른 아파트 인덱스
+    String qrcode;
+    String name, addr, tel;
 
     Intent intent;
+
     private final String packageName = "com.nhn.android.nmap";
 
     public static HomeFragment newinstance() {
@@ -82,7 +94,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     DateSetListener dateSetListener = new DateSetListener();
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, final Bundle savedInstanceState) {
         db = FirebaseFirestore.getInstance();
         parent = inflater;
         View root = inflater.inflate(R.layout.activity_map, container, false);
@@ -132,27 +144,25 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             }
         });
 
-        //qrcheck 화면에서 확인눌렀을때, 동작하는 코드
-        /*
-        if(savedInstanceState != null) {
-            String key = getArguments().getString("qrcode");
-            if(key == "1")
-                qrcodeString = null;
-            else
-                qrcodeString = key;
-        }
-         */
-
+        //예약하기 버튼 클릭
         TextView reserve = root.findViewById(R.id.reserve);
         reserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                name = aptList.get(reser_index).getAptName();
+                addr = aptList.get(reser_index).aptAddr;
+                tel = "010-1111-1111";
                 qrcodeString = getRandomString();
+                qrcode_storage.setValue(qrcodeString);
                 Fragment fragment = new Check_qr();
-                Bundle bundle = new Bundle(1);
-                bundle.putString("qrcode", qrcodeString);
+                Bundle bundle = new Bundle(4);
+                bundle.putString("apart_name", name);
+                bundle.putString("apart_addr", addr);
+                bundle.putString("apart_tel", tel);
+                bundle.putString("qrcode",qrcodeString);
                 fragment.setArguments(bundle);
                 ((Menubar) getActivity()).replaceFragment(R.layout.activity_check_qr, fragment);
+                Toast.makeText(inflater.getContext(), name, Toast.LENGTH_SHORT).show();
                 Toast.makeText(inflater.getContext(), "예약이 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -183,10 +193,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         btnQRcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new Check_qr();
-                Bundle bundle = new Bundle(1);
-                bundle.putString("qrcode", qrcodeString);
-                fragment.setArguments(bundle);
+                Fragment fragment = Check_qr.newinstance();
+                if(qrcodeString == "null")
+                    qrcodeString = null;
+                else{
+                    Bundle bundle = new Bundle(4);
+                    bundle.putString("apart_name", name);
+                    bundle.putString("apart_addr", addr);
+                    bundle.putString("apart_tel", tel);
+                    bundle.putString("qrcode",qrcodeString);
+                    fragment.setArguments(bundle);
+                }
                 ((Menubar) getActivity()).replaceFragment(R.layout.activity_check_qr, fragment);
             }
         });
@@ -354,6 +371,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             if (temp.equals(aptList.get(index).getAptName()))
                 break;
         }
+        reser_index = index;
+
         // 총 주차면, 사용 가능 주차면, 즐겨찾기 수, 리뷰 수 setText
         DecimalFormat formatter = new DecimalFormat("###,###");
         totalSpace.setText(formatter.format(aptList.get(index).getTotalSpace()));
@@ -508,6 +527,29 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             buffer.append(chars[random.nextInt(chars.length)]);
         }
         return buffer.toString();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        db_read();
+    }
+
+    public void db_read(){
+        qrcode_storage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                qrcode = snapshot.getValue().toString();
+                if(qrcode == "null"){
+                    qrcodeString = null;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
 
