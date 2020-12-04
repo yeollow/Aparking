@@ -61,12 +61,12 @@ public class BookmarkFragment extends Fragment {
         }
 
         public void initialize(){
-            add(new Item("복현동진아파트", "대구 북구 동북로50길 10 (복현동)", "398m", 1900, 254));
-            add(new Item("뉴그랜드아파트", "대구 북구 경진로남1길 17-5 (복현동)", "409m", 3000, 198));
-            add(new Item("동양아파트", "대구 북구 경진로남1길 20 (복현동)", "350m", 2000, 47));
+            add(new Item("복현동진아파트", "대구 북구 동북로50길 10 (복현동)", "398m", 1400, 47));
+            add(new Item("뉴그랜드아파트", "대구 북구 경진로남1길 17-5 (복현동)", "409m", 1300, 198));
+            add(new Item("동양아파트", "대구 북구 경진로남1길 20 (복현동)", "350m", 1900, 274));
             add(new Item( "석우로즈빌아파트", "대구 북구 경진로12길 6-14 (복현동)", "171m", 2500, 126));
-            add(new Item("복현아이파크아파트", "대구 북구 경대로27길 40 (복현동)", "325m", 3000, 28));
-            add(new Item("리치파크아파트", "대구 북구 경진로51 (복현동)",  "215m", 2900, 153));
+            add(new Item("복현아이파크아파트", "대구 북구 경대로27길 40 (복현동)", "325m", 2800, 28));
+            add(new Item("리치파크아파트", "대구 북구 경진로51 (복현동)",  "215m", 1600, 153));
         }
         public void add(Item item){
             bookmarkList.add(item);
@@ -92,6 +92,7 @@ public class BookmarkFragment extends Fragment {
             if (view == null)
                 view = inflater.inflate(layout, null);
 
+            // 길게 클릭 시 즐겨찾기 삭제
             view.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -146,7 +147,7 @@ public class BookmarkFragment extends Fragment {
 
             // 사용 가능 주차면
             Button apt_avails = (Button) view.findViewById(R.id.apt_avail);
-            apt_avails.setText(bookmarkList.get(position).getAvailSpace() + "대");
+            apt_avails.setText(formatter.format(bookmarkList.get(position).getAvailSpace()) + "대");
 
             // 100대 미만이면 붉게 표시
             if (bookmarkList.get(position).getAvailSpace() < 100)
