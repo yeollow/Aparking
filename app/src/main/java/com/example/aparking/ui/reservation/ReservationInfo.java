@@ -26,7 +26,7 @@ public class ReservationInfo extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.activity_reservation_list, container, false);
+        View root = inflater.inflate(R.layout.fragment_reservation, container, false);
 
         list = (ListView) root.findViewById(R.id.list_reservation);
         ReservationAdapter adapter = new ReservationAdapter(inflater.getContext(), R.layout.listitem_reservation);

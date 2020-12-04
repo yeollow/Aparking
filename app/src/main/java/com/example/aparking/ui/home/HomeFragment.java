@@ -184,7 +184,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             @Override
             public void onClick(View view) {
                 Fragment fragment = new BookmarkFragment();
-                ((Menubar) getActivity()).replaceFragment(R.layout.activity_bookmark, fragment);
+                ((Menubar) getActivity()).replaceFragment(R.layout.fragment_bookmark, fragment);
             }
         });
 

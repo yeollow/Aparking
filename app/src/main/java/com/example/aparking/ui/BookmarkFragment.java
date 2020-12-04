@@ -39,7 +39,7 @@ public class BookmarkFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.activity_bookmark, container, false);
+        View root = inflater.inflate(R.layout.fragment_bookmark, container, false);
 
         list = (ListView) root.findViewById(R.id.bookmarkList);
         adapter = new BookmarkAdapter(inflater.getContext(), R.layout.listitem_bookmark);
