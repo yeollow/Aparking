@@ -15,25 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".SnsSignin" />
-
-        <activity
-            android:name=".Menubar"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize"> <!-- 키보드가 올라왔을 때 layout의 상하단 모두 보이도록 조절 -->
-
-        </activity> <!-- 구글맵, 김도희 -->
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
-
-        <activity android:name=".Login">
-
-        </activity>
-
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Signin" />
         <activity
             android:name=".Splash">
             <intent-filter>
@@ -42,6 +23,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity android:name=".Login"/>
+        <activity android:name=".Signin" />
+        <activity android:name=".SnsSignin" />
+        <activity
+            android:name=".Menubar"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"> <!-- 키보드가 올라왔을 때 layout의 상하단 모두 보이도록 조절 -->
+        </activity>
+        <activity android:name=".MainActivity" />
 
+        <!-- 구글맵 정보인 것 같음 -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
+    </application>
 </manifest>

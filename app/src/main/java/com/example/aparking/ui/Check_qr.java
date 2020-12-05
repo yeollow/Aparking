@@ -105,12 +105,12 @@ public class Check_qr extends Fragment {
         }
 
 
-        View view = inflater.inflate(R.layout.activity_map_price, null);
+        View view = inflater.inflate(R.layout.activity_map, null);
         closeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Fragment fragment = new HomeFragment();
-                ((Menubar) getActivity()).replaceFragment(R.layout.activity_map_price, fragment);
+                ((Menubar) getActivity()).replaceFragment(R.layout.activity_map, fragment);
 
             }
         });
