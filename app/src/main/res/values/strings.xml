@@ -20,9 +20,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="customer_name">이정열</string>
-    <string name="customer_telnumber">010-9041-1588</string>
-    <string name="customer_email">ljy2784437@gmail.com</string>
+    <string name="customer_name">김도희</string>
+    <string name="customer_telnumber">010-2518-6358</string>
+    <string name="customer_email">dohee121@naver.com</string>
 
 
     <string name="menu_mypage">내정보</string>
