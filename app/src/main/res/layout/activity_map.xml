@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+    >
 
     <!-- activity였을 때 태그 fragment였음 -->
     <com.google.android.gms.maps.MapView
@@ -25,6 +24,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/round_corner_searchview"
         android:iconifiedByDefault="false"
+        android:focusable="false"
         android:paddingBottom="5dp"
         android:queryHint="장소, 주소 검색" />
 
@@ -84,7 +84,9 @@
         android:id="@+id/sliding"
         android:layout_width="match_parent"
         android:layout_height="340dp"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <LinearLayout
             android:layout_width="match_parent"

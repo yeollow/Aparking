@@ -202,6 +202,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener, D
 
                     Intent intent = new Intent(getApplicationContext(), Login.class);
                     startActivity(intent);
+                    finish();
 
                 } else {
                     Toast.makeText(getApplicationContext(), "인증에 실패했습니다. 인증번호를 다시 입력해주세요.", Toast.LENGTH_LONG).show();
