@@ -33,9 +33,5 @@
             android:id="@+id/nav_consultant"
             android:icon="@drawable/ic_menu_email"
             android:title="@string/menu_consultant" />
-        <item
-            android:id="@+id/nav_review"
-            android:icon="@drawable/ic_menu_article"
-            android:title="@string/menu_review" />
     </group>
 </menu>

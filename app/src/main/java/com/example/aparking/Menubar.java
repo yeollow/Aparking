@@ -67,12 +67,13 @@ public class Menubar extends AppCompatActivity {
 
     }
 
-    @Override
+    // 툴바 오른쪽 점 세 개짜리 메뉴
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_bar, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onSupportNavigateUp() {
