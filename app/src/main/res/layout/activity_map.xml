@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Map">
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <!-- activity였을 때 태그 fragment였음 -->
     <com.google.android.gms.maps.MapView
