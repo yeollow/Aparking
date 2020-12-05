@@ -38,7 +38,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class Check_qr extends Fragment {
     private Button navigationBtn;
     private Button callbtn;
-<<<<<<< HEAD
+
     private Button closeBtn;
     private TextView info, cancel, telenum;
     private String text = null;
@@ -46,31 +46,25 @@ public class Check_qr extends Fragment {
     private final String packageName = "com.nhn.android.nmap";
     Intent intent;
 
-    public static Check_qr getInstance() {
-=======
-    private TextView info, cancel, telenum, apart_name, apart_addr, date;
-    private String text = null;
+    private TextView apart_name, apart_addr, date;
     String tel;
     ViewGroup view;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference qrcode_storage = mDatabase.child("user_qr");
 
     public static Check_qr newinstance(){
->>>>>>> 32ecf6276b1677cbc710ed16aaa98fa812764bc0
         return new Check_qr();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.activity_check_qr, container, false);
-<<<<<<< HEAD
+
 
         navigationBtn = root.findViewById(R.id.nav_btn);
         closeBtn = root.findViewById(R.id.close_btn);
-=======
+
         view = container;
-        createQRbtn = (Button)root.findViewById(R.id.nav_btn);
->>>>>>> 32ecf6276b1677cbc710ed16aaa98fa812764bc0
         callbtn = root.findViewById(R.id.call_btn);
         info = root.findViewById(R.id.qrcheckInfotext);
         cancel = root.findViewById(R.id.qrcheck_cancel);
@@ -170,8 +164,6 @@ public class Check_qr extends Fragment {
 
         return root;
     }
-<<<<<<< HEAD
-=======
 /*
     @Override
     public void onStart() {
@@ -194,5 +186,4 @@ public class Check_qr extends Fragment {
     }
 
  */
->>>>>>> 32ecf6276b1677cbc710ed16aaa98fa812764bc0
 }
