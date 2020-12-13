@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    tools:context=".Bookmark">
+    android:background="@color/colorBackground">
 
     <!-- size 수정 시 즐겨찾기, 예약내역, 결제내역 다 같이 바꾸기 -->
     <TextView

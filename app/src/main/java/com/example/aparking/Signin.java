@@ -195,7 +195,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener, D
 //                    분명 database 이름과 json객체 설정, json field(key,value)를 설정할 수 있는 방법이 있을거야
 //                    acc_name, acc_pw, phone_num, acc_email 전부 보내면 됨.
 
-                    Toast.makeText(getApplicationContext(), "이메일 인증에 성공했습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "이메일 인증에 성공했습니다.", Toast.LENGTH_SHORT).show();
 
                     authDialog.cancel();
                     timer.cancel();
@@ -205,7 +205,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener, D
                     finish();
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "인증에 실패했습니다. 인증번호를 다시 입력해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "인증에 실패했습니다. 인증번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                     authDialog.cancel();
                     timer.cancel();
                 }
