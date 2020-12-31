@@ -33,9 +33,10 @@
         </activity>
         <activity android:name=".MainActivity" />
 
-        <!-- 구글맵 정보인 것 같음 -->
+        <!-- value에 구글맵 API KEY 추가 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD8vg4KNEqyVsvYOZsIkbFuoN-qKk1RnYI" />
+            android:value="" />
+
     </application>
 </manifest>

@@ -158,8 +158,8 @@ public class ReviewFragment extends Fragment {
 
         // 초기 data 입력
         public void initialize() {
-            add(new Item("김남준", "머라 써야되노", "19.12.31", 1));
-            add(new Item("정호석", "쌤들이 시험칠 때 연예인 이름 왜 넣는지 알 거 같다", "20.05.11", (float)2.5));
+            add(new Item("김남준", "가격 안 올랐으면 좋겠어요... 몇 달 전보다 많이 오른 것 같네요.", "19.12.31", 1));
+            add(new Item("정호석", "갈 때마다 자리도 널널하고 쾌적합니다.", "20.05.11", (float)2.5));
             add(new Item("민윤기", "딴 데보다 싼 거 같음 굿굿", "20.06.25", 5));
             add(new Item("김태형", "그냥 동네 아파트 주차장이에요.", "20.06.30", 3));
             add(new Item("김석진", "무난합니다~", "20.07.08", 4));
