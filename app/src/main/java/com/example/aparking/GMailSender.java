@@ -22,7 +22,7 @@ public class GMailSender extends javax.mail.Authenticator {
         this.password = password;
         emailCode = createEmailCode();
 
-        Authenticator auth = new SMTPAuthenticator("ljy2784437@gmail.com", "igmytbfweuzzttpw");
+        Authenticator auth = new SMTPAuthenticator("구글 계정", "구글 app 비밀번호");
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.host", mailhost);
@@ -45,9 +45,7 @@ public class GMailSender extends javax.mail.Authenticator {
     } //생성된 이메일 인증코드 반환
 
     private String createEmailCode() { //이메일 인증코드 생성
-        String[] str = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        String[] str = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
         String newCode = new String();
 
         for (int x = 0; x < 6; x++) {
