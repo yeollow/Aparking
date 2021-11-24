@@ -1,16 +1,16 @@
-# 2020-2 경북대학교 컴퓨터학부 종합설계프로젝트1
+## 🚗 2020-2 경북대학교 컴퓨터학부 종합설계프로젝트1
 * 산학협력기관: ㈜신라시스템
 * 한국방송미디어공학회 추계학술대회 대학생 논문 장려상
 * DIP 산학협력 프로젝트 결과보고회 참여
 <br>
 
-## 아파트·상가의 주차면 공유서비스 플랫폼
+## 🚗 아파트·상가의 주차면 공유서비스 플랫폼
 * 주차면 예약·결제를 위한 안드로이드 애플리케이션
 * 출입통제자동화시스템 연동과 QR코드를 활용한 입/출차 확인 수단 제공
 * 주차공간의 수급 불균형 해소 및 공유경제 활성화
 <br>
 
-## 주요 기능
+## 🚗 주요 기능
 ### 1. 시작 화면
 ![image](https://user-images.githubusercontent.com/57346425/143204003-a9206028-6817-4bd1-8903-193b515ab44f.png)
 
@@ -37,5 +37,5 @@
 ![image](https://user-images.githubusercontent.com/57346425/143205332-88849a76-875b-4dc3-a1c2-f8228dd3fb4c.png)
 <br>
 
-## 데모 영상
+## 🚗 데모 영상
 [![Youtube Badge](https://img.shields.io/badge/Youtube-ff0000?style=flat-square&logo=youtube&link=https://youtu.be/Qz4E4Qf7BGw)](https://youtu.be/Qz4E4Qf7BGw)
